@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C833E19915B7D94500EE636E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19815B7D94500EE636E /* UIKit.framework */; };
+		C833E19B15B7D94500EE636E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19A15B7D94500EE636E /* Foundation.framework */; };
+		C833E19D15B7D94500EE636E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19C15B7D94500EE636E /* CoreGraphics.framework */; };
+		C833E1A315B7D94500EE636E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C833E1A115B7D94500EE636E /* InfoPlist.strings */; };
+		C833E1A515B7D94500EE636E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1A415B7D94500EE636E /* main.m */; };
+		C833E1A915B7D94500EE636E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1A815B7D94500EE636E /* AppDelegate.m */; };
+		C833E1B115B7D94600EE636E /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E1B015B7D94600EE636E /* SenTestingKit.framework */; };
+		C833E1B215B7D94600EE636E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19815B7D94500EE636E /* UIKit.framework */; };
+		C833E1B315B7D94600EE636E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19A15B7D94500EE636E /* Foundation.framework */; };
+		C833E1BB15B7D94600EE636E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C833E1B915B7D94600EE636E /* InfoPlist.strings */; };
+		C833E1BE15B7D94600EE636E /* BeachComberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1BD15B7D94600EE636E /* BeachComberTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C833E1B415B7D94600EE636E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C833E18B15B7D94500EE636E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C833E19315B7D94500EE636E;
+			remoteInfo = BeachComber;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C833E19415B7D94500EE636E /* BeachComber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachComber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C833E19815B7D94500EE636E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C833E19A15B7D94500EE636E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C833E19C15B7D94500EE636E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C833E1A015B7D94500EE636E /* BeachComber-Info.plist */ = {isa = PBXFileReference; path = "BeachComber-Info.plist"; sourceTree = "<group>"; };
+		C833E1A215B7D94500EE636E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C833E1A415B7D94500EE636E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */ = {isa = PBXFileReference; path = "BeachComber-Prefix.pch"; sourceTree = "<group>"; };
+		C833E1A715B7D94500EE636E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		C833E1A815B7D94500EE636E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C833E1AF15B7D94600EE636E /* BeachComberTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeachComberTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C833E1B015B7D94600EE636E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		C833E1B815B7D94600EE636E /* BeachComberTests-Info.plist */ = {isa = PBXFileReference; path = "BeachComberTests-Info.plist"; sourceTree = "<group>"; };
+		C833E1BA15B7D94600EE636E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C833E1BC15B7D94600EE636E /* BeachComberTests.h */ = {isa = PBXFileReference; path = BeachComberTests.h; sourceTree = "<group>"; };
+		C833E1BD15B7D94600EE636E /* BeachComberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeachComberTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C833E19115B7D94500EE636E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E19915B7D94500EE636E /* UIKit.framework in Frameworks */,
+				C833E19B15B7D94500EE636E /* Foundation.framework in Frameworks */,
+				C833E19D15B7D94500EE636E /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C833E1AB15B7D94600EE636E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E1B115B7D94600EE636E /* SenTestingKit.framework in Frameworks */,
+				C833E1B215B7D94600EE636E /* UIKit.framework in Frameworks */,
+				C833E1B315B7D94600EE636E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C833E18915B7D94500EE636E = {
+			isa = PBXGroup;
+			children = (
+				C833E19E15B7D94500EE636E /* BeachComber */,
+				C833E1B615B7D94600EE636E /* BeachComberTests */,
+				C833E19715B7D94500EE636E /* Frameworks */,
+				C833E19515B7D94500EE636E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C833E19515B7D94500EE636E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C833E19415B7D94500EE636E /* BeachComber.app */,
+				C833E1AF15B7D94600EE636E /* BeachComberTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C833E19715B7D94500EE636E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C833E19815B7D94500EE636E /* UIKit.framework */,
+				C833E19A15B7D94500EE636E /* Foundation.framework */,
+				C833E19C15B7D94500EE636E /* CoreGraphics.framework */,
+				C833E1B015B7D94600EE636E /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C833E19E15B7D94500EE636E /* BeachComber */ = {
+			isa = PBXGroup;
+			children = (
+				C833E1A715B7D94500EE636E /* AppDelegate.h */,
+				C833E1A815B7D94500EE636E /* AppDelegate.m */,
+				C833E19F15B7D94500EE636E /* Supporting Files */,
+			);
+			path = BeachComber;
+			sourceTree = "<group>";
+		};
+		C833E19F15B7D94500EE636E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C833E1A015B7D94500EE636E /* BeachComber-Info.plist */,
+				C833E1A115B7D94500EE636E /* InfoPlist.strings */,
+				C833E1A415B7D94500EE636E /* main.m */,
+				C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C833E1B615B7D94600EE636E /* BeachComberTests */ = {
+			isa = PBXGroup;
+			children = (
+				C833E1BC15B7D94600EE636E /* BeachComberTests.h */,
+				C833E1BD15B7D94600EE636E /* BeachComberTests.m */,
+				C833E1B715B7D94600EE636E /* Supporting Files */,
+			);
+			path = BeachComberTests;
+			sourceTree = "<group>";
+		};
+		C833E1B715B7D94600EE636E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C833E1B815B7D94600EE636E /* BeachComberTests-Info.plist */,
+				C833E1B915B7D94600EE636E /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C833E19315B7D94500EE636E /* BeachComber */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComber" */;
+			buildPhases = (
+				C833E19015B7D94500EE636E /* Sources */,
+				C833E19115B7D94500EE636E /* Frameworks */,
+				C833E19215B7D94500EE636E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BeachComber;
+			productName = BeachComber;
+			productReference = C833E19415B7D94500EE636E /* BeachComber.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C833E1AE15B7D94600EE636E /* BeachComberTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComberTests" */;
+			buildPhases = (
+				C833E1AA15B7D94600EE636E /* Sources */,
+				C833E1AB15B7D94600EE636E /* Frameworks */,
+				C833E1AC15B7D94600EE636E /* Resources */,
+				C833E1AD15B7D94600EE636E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C833E1B515B7D94600EE636E /* PBXTargetDependency */,
+			);
+			name = BeachComberTests;
+			productName = BeachComberTests;
+			productReference = C833E1AF15B7D94600EE636E /* BeachComberTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C833E18B15B7D94500EE636E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "University of British Columbia";
+			};
+			buildConfigurationList = C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "BeachComber" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C833E18915B7D94500EE636E;
+			productRefGroup = C833E19515B7D94500EE636E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C833E19315B7D94500EE636E /* BeachComber */,
+				C833E1AE15B7D94600EE636E /* BeachComberTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C833E19215B7D94500EE636E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E1A315B7D94500EE636E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C833E1AC15B7D94600EE636E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E1BB15B7D94600EE636E /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C833E1AD15B7D94600EE636E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C833E19015B7D94500EE636E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E1A515B7D94500EE636E /* main.m in Sources */,
+				C833E1A915B7D94500EE636E /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C833E1AA15B7D94600EE636E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833E1BE15B7D94600EE636E /* BeachComberTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C833E1B515B7D94600EE636E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C833E19315B7D94500EE636E /* BeachComber */;
+			targetProxy = C833E1B415B7D94600EE636E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C833E1A115B7D94500EE636E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C833E1A215B7D94500EE636E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C833E1B915B7D94600EE636E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C833E1BA15B7D94600EE636E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C833E1BF15B7D94600EE636E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C833E1C015B7D94600EE636E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C833E1C215B7D94600EE636E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
+				INFOPLIST_FILE = "BeachComber/BeachComber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C833E1C315B7D94600EE636E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
+				INFOPLIST_FILE = "BeachComber/BeachComber-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C833E1C515B7D94600EE636E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeachComber.app/BeachComber";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
+				INFOPLIST_FILE = "BeachComberTests/BeachComberTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		C833E1C615B7D94600EE636E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeachComber.app/BeachComber";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
+				INFOPLIST_FILE = "BeachComberTests/BeachComberTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "BeachComber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C833E1BF15B7D94600EE636E /* Debug */,
+				C833E1C015B7D94600EE636E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComber" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C833E1C215B7D94600EE636E /* Debug */,
+				C833E1C315B7D94600EE636E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComberTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C833E1C515B7D94600EE636E /* Debug */,
+				C833E1C615B7D94600EE636E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C833E18B15B7D94500EE636E /* Project object */;
+}
