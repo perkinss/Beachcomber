@@ -7,16 +7,30 @@
 //
 
 #import "AppDelegate.h"
+#import "PhotoTableViewController.h"
+#import "PhotoData.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize photoViewController;
+@synthesize photoData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    self.photoData = [[PhotoData alloc] init];
+    
+    photoViewController = [[PhotoTableViewController alloc] init];
+    photoViewController.photos = self.photoData;
+    
+    UINavigationController *navController=[[UINavigationController alloc] initWithRootViewController: self.photoViewController];
+    
+    self.window.rootViewController = navController;
+    //[self.window addSubview:photoViewController.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
