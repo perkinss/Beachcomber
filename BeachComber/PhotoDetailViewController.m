@@ -11,7 +11,7 @@
 
 @implementation PhotoDetailViewController
 
-@synthesize croppedImage, imageView, commentField, categoryField, categoryPicker, categories, selectedCategory, entry;
+@synthesize croppedImage, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, selectedCategory, entry;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par
 {
@@ -19,6 +19,7 @@
     if (self) {
         self.croppedImage = image;
         self.categories = [NSArray arrayWithObjects:@"animal", @"wreckage", @"machinery", @"person", nil];
+        self.compositions = [NSArray arrayWithObjects:@"Building material", @"Marine equipment", @"Container/packaging", @"Vehicle parts", @"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
         //[self.navigation
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.entry = entry_par;
@@ -53,12 +54,12 @@
     self.categoryPicker.delegate = self;
     self.categoryPicker.dataSource = self;
     
-    UIToolbar *toolbar = [[UIToolbar alloc] init];
-    toolbar.frame = CGRectMake(0, 0, fullScreen.size.width, 44);
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(pickerButtonDone)]];    
-    [items addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(pickerButtonCancel)]];
-    [toolbar setItems:items animated:NO];
+    UIToolbar *categoryToolbar = [[UIToolbar alloc] init];
+    categoryToolbar.frame = CGRectMake(0, 0, fullScreen.size.width, 44);
+    NSMutableArray *categoryItems = [[NSMutableArray alloc] init];
+    [categoryItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(categoryPickerButtonDone)]];    
+    [categoryItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(categoryPickerButtonCancel)]];
+    [categoryToolbar setItems:categoryItems animated:NO];
     
     UILabel* categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
     categoryLabel.text = @"Category:";
@@ -67,8 +68,30 @@
     currentY += self.categoryField.frame.size.height + 30;     
     self.categoryField.borderStyle = UITextBorderStyleRoundedRect;
     self.categoryField.inputView = self.categoryPicker;
-    self.categoryField.inputAccessoryView = toolbar;
+    self.categoryField.inputAccessoryView = categoryToolbar;
     self.categoryField.text = [self.entry objectForKey:@"category"];
+    
+    self.compositionPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0,40,0,0)];
+    self.compositionPicker.showsSelectionIndicator = YES;
+    self.compositionPicker.delegate = self;
+    self.compositionPicker.dataSource = self;
+    
+    UIToolbar *compositionToolbar = [[UIToolbar alloc] init];
+    compositionToolbar.frame = CGRectMake(0, 0, fullScreen.size.width, 44);
+    NSMutableArray *compositionItems = [[NSMutableArray alloc] init];
+    [compositionItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(compositionPickerButtonDone)]];    
+    [compositionItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(compositionPickerButtonCancel)]];
+    [compositionToolbar setItems:compositionItems animated:NO];
+        
+    UILabel* compositionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
+    compositionLabel.text = @"Composition:";
+    currentY += compositionLabel.frame.size.height + 10;                       
+    self.compositionField = [[UITextField alloc] initWithFrame:CGRectMake(10, currentY, 300, 40)];
+    currentY += self.compositionField.frame.size.height + 30;     
+    self.compositionField.borderStyle = UITextBorderStyleRoundedRect;
+    self.compositionField.inputView = self.compositionPicker;
+    self.compositionField.inputAccessoryView = compositionToolbar;
+    self.compositionField.text = [self.entry objectForKey:@"composition"];
     
     UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
     commentLabel.text = @"Comments:";
@@ -78,11 +101,14 @@
     self.commentField.borderStyle =  UITextBorderStyleRoundedRect;
     self.commentField.text = [self.entry objectForKey:@"comment"];
     self.commentField.delegate = self;
-    scrollView.contentSize = CGSizeMake(fullScreen.size.width,currentY + self.commentField.frame.size.height + 10);
+    currentY += self.commentField.frame.size.height + 10;
+    scrollView.contentSize = CGSizeMake(fullScreen.size.width, currentY);
     
     [scrollView addSubview:self.imageView];
     [scrollView addSubview:categoryLabel];
     [scrollView addSubview:self.categoryField];
+    [scrollView addSubview:compositionLabel];
+    [scrollView addSubview:self.compositionField];
     [scrollView addSubview:commentLabel];
     [scrollView addSubview:self.commentField];
     
@@ -117,22 +143,35 @@
     return 1;
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    return [categories count];
+    if (pickerView == self.categoryPicker) {
+        return [categories count];
+    }
+    if (pickerView == self.compositionPicker) {
+        return [compositions count];
+    }
+    return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [categories objectAtIndex:row];
+    if (pickerView == self.categoryPicker) {
+        return [categories objectAtIndex:row];
+    }
+    if (pickerView == self.compositionPicker) {
+        return [compositions objectAtIndex:row];
+    }
+    return nil;
 }
 
 
-- (void) pickerButtonDone {
+- (void) categoryPickerButtonDone {
     self.categoryField.text = [categories objectAtIndex:[self.categoryPicker selectedRowInComponent:0]];
     [self.categoryField resignFirstResponder];
 }
-- (void) pickerButtonCancel {
+- (void) categoryPickerButtonCancel {
     [self.categoryField resignFirstResponder];
     
 }
+
 
 -(BOOL)textFieldShouldReturn:(UITextField *)theTextField
 {
@@ -141,11 +180,20 @@
     }
     return YES;
 } 
-                      
+- (void) compositionPickerButtonDone {
+    self.compositionField.text = [compositions objectAtIndex:[self.compositionPicker selectedRowInComponent:0]];
+    [self.compositionField resignFirstResponder];
+}
+- (void) compositionPickerButtonCancel {
+    [self.compositionField resignFirstResponder];
+    
+}
+                     
 
 - (void) saveEvent {
     [self.entry setObject:self.commentField.text forKey:@"comment"];
     [self.entry setObject:self.categoryField.text forKey:@"category"];
+    [self.entry setObject:self.compositionField.text forKey:@"composition"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

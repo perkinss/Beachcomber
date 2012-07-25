@@ -15,7 +15,10 @@
 
 - (void) saveData;
 - (NSInteger) count;
-- (NSMutableDictionary* ) addPhoto:(UIImage*) image withComment:(NSString*)comment category:(NSString*)category;
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image;
+
 - (NSDictionary*) photoAtIndex: (NSInteger) index;
+- (BOOL) removePhotoAtIndex: (NSInteger) index;
+- (BOOL) movePhotoAtIndex:(NSInteger)fromIndex to:(NSInteger)toIndex;
 
 @end

@@ -15,8 +15,11 @@
     UITextField *categoryField;
     UIPickerView *categoryPicker;
     
+    UITextField *compositionField;
+    UIPickerView *compositionPicker;
+    
     NSArray *categories;
-    NSString *selectedCategory;
+    NSArray *compositions;
     NSMutableDictionary *entry;
     
 }
@@ -26,14 +29,22 @@
 @property (nonatomic, retain) UITextField *commentField;
 @property (nonatomic, retain) UITextField *categoryField;
 @property (nonatomic, retain) UIPickerView *categoryPicker;
+
+@property (nonatomic, retain) UITextField *compositionField;
+@property (nonatomic, retain) UIPickerView *compositionPicker;
+
 @property (nonatomic, retain) NSArray *categories;
+@property (nonatomic, retain) NSArray *compositions;
 @property (nonatomic, retain) NSString *selectedCategory;
 @property (nonatomic, retain) NSMutableDictionary *entry;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
 
-- (void) pickerButtonDone;
-- (void) pickerButtonCancel;
+- (void) categoryPickerButtonDone;
+- (void) categoryPickerButtonCancel;
+
+- (void) compositionPickerButtonDone;
+- (void) compositionPickerButtonCancel;
 - (void) saveEvent;
 - (IBAction)textFieldReturn:(UITextField *)theTextField; 
 - (IBAction)textFieldDidEndEditing:(UITextField *)textField:(id)sender;
