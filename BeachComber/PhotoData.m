@@ -65,7 +65,7 @@
     return [photos count];
 }
 
-- (NSMutableDictionary* ) addPhoto:(UIImage*) image withComment:(NSString*)comment category:(NSString*)category{
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image {
     NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -87,8 +87,9 @@
     [data writeToFile:uniqueFilename atomically:YES];
     
     [newPhoto setObject: uniqueFilename forKey:@"imageFile"];
-    [newPhoto setObject: comment forKey:@"comment"];
-    [newPhoto setObject: category forKey:@"category"];
+    [newPhoto setObject: @"" forKey:@"comment"];
+    [newPhoto setObject: @"" forKey:@"category"];
+    [newPhoto setObject: @"" forKey:@"composition"];
     
     [self.photos addObject:newPhoto];
     //[self saveData];  // Save every time a photo is added?

@@ -134,7 +134,7 @@
     
     [self dismissModalViewControllerAnimated: YES];
     
-    NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave withComment:@"" category:@""];
+    NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave];
     PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:imageToSave entry:newEntry];
     [self.navigationController pushViewController:detailView animated:YES];
 }
