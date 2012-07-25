@@ -27,7 +27,7 @@
         entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"]];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Wreckage" forKey:@"category"];
-        [entry setObject:@"Contrete" forKey:@"composition"];
+        [entry setObject:@"Concrete" forKey:@"composition"];
         
         entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"]];
         [entry setObject:@"placeholder" forKey:@"comment"];
@@ -42,7 +42,7 @@
         entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"]];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Wreckage" forKey:@"category"];
-        [entry setObject:@"Contrete" forKey:@"composition"];
+        [entry setObject:@"Concrete" forKey:@"composition"];
     }
     
     baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
