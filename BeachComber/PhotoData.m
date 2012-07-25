@@ -65,7 +65,7 @@
     return [photos count];
 }
 
-- (NSMutableDictionary* ) addPhoto:(UIImage*) image {
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image withLocation:(CLLocation*)location {
     NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -90,6 +90,18 @@
     [newPhoto setObject: @"" forKey:@"comment"];
     [newPhoto setObject: @"" forKey:@"category"];
     [newPhoto setObject: @"" forKey:@"composition"];
+    NSString *latitudeString = @"";
+    NSString *longitudeString = @"";
+    if (location != nil) {
+        latitudeString = [NSString stringWithFormat:@"%f", location.coordinate.latitude];
+        longitudeString = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
+    }
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"yyyy-MM-dd HH:mm"];
+    NSString* dateString = [format stringFromDate:[NSDate date]];
+    [newPhoto setObject:latitudeString forKey:@"latitude"];
+    [newPhoto setObject:longitudeString forKey:@"longitude"];
+    [newPhoto setObject:dateString forKey:@"timestamp"];
     
     [self.photos addObject:newPhoto];
     //[self saveData];  // Save every time a photo is added?

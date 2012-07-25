@@ -11,9 +11,10 @@
 #import "PhotoDetailViewController.h"
 #import "PhotoData.h"
 #import <MobileCoreServices/UTCoreTypes.h>
+#import <CoreLocation/CoreLocation.h>
 
 @implementation BaseViewController
-@synthesize photos;
+@synthesize photos, locationManager, currentLocation;
 
 
 - (id)initWithPhotoData:(PhotoData*) photoData
@@ -21,6 +22,10 @@
     self = [super init];
     if (self) {
         self.photos = photoData;
+        
+        self.locationManager = [[CLLocationManager alloc] init];
+        self.locationManager.delegate = self;
+        [self.locationManager startMonitoringSignificantLocationChanges];
     }
     return self;
 }
@@ -76,10 +81,16 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+
+//  called when new location data is received
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation
+{
+    self.currentLocation = newLocation;
+}
+
 - (void) cameraButton {
-    //if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera] == NO)
-    //    return NO;
-    
     if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
         UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
         cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
@@ -133,7 +144,7 @@
     
     [self dismissModalViewControllerAnimated: YES];
     
-    NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave];
+    NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave withLocation: self.currentLocation];
     PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:imageToSave entry:newEntry];
     [self.navigationController pushViewController:detailView animated:YES];
 }

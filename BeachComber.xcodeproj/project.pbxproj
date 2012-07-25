@@ -28,6 +28,7 @@
 		C833E1D815B91DBC00EE636E /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D515B91DBC00EE636E /* image2.png */; };
 		C833E1D915B91DBC00EE636E /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D615B91DBC00EE636E /* image3.png */; };
 		C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A5592015BCA12C0070FBA7 /* BaseViewController.m */; };
+		C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		C833E1D615B91DBC00EE636E /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
 		C8A5591F15BCA12C0070FBA7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		C8A5592015BCA12C0070FBA7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */,
 				C833E19915B7D94500EE636E /* UIKit.framework in Frameworks */,
 				C833E19B15B7D94500EE636E /* Foundation.framework in Frameworks */,
 				C833E19D15B7D94500EE636E /* CoreGraphics.framework in Frameworks */,
@@ -120,6 +123,7 @@
 		C833E19715B7D94500EE636E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */,
 				C833E19815B7D94500EE636E /* UIKit.framework */,
 				C833E19A15B7D94500EE636E /* Foundation.framework */,
 				C833E19C15B7D94500EE636E /* CoreGraphics.framework */,

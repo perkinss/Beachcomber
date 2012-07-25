@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface PhotoData : NSObject {
     NSMutableArray *photos;
@@ -15,7 +16,7 @@
 
 - (void) saveData;
 - (NSInteger) count;
-- (NSMutableDictionary* ) addPhoto:(UIImage*) image;
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image withLocation:(CLLocation*)location;
 
 - (NSDictionary*) photoAtIndex: (NSInteger) index;
 - (UIImage*) photoImageAtIndex: (NSInteger) index;

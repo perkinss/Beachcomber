@@ -24,22 +24,22 @@
     self.photoData = [[PhotoData alloc] init];
     if ([self.photoData count] == 0) {
         NSMutableDictionary *entry;
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"]];
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Wreckage" forKey:@"category"];
         [entry setObject:@"Concrete" forKey:@"composition"];
         
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"]];
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Animal" forKey:@"category"];
         [entry setObject:@"Mixed/Other" forKey:@"composition"];
         
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"]];
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Animal" forKey:@"category"];
         [entry setObject:@"Mixed/Other" forKey:@"composition"];
         
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"]];
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"] withLocation:nil];
         [entry setObject:@"placeholder" forKey:@"comment"];
         [entry setObject:@"Wreckage" forKey:@"category"];
         [entry setObject:@"Concrete" forKey:@"composition"];
