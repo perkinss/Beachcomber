@@ -30,6 +30,37 @@
     return [self.photos objectAtIndex: index];
 }
 
+- (BOOL) removePhotoAtIndex: (NSInteger) index {
+    if (index >= [self.photos count] || index < 0) {
+        return NO;
+    }
+    NSMutableDictionary *entry = [self.photos objectAtIndex: index];
+    NSString *imageFile = [entry objectForKey:@"imageFile"];
+    
+    NSFileManager *fileMgr = [[NSFileManager alloc] init];
+    NSError *error = nil;
+    [fileMgr removeItemAtPath:imageFile error:&error];
+    if (error != nil) {
+        // This deletion procedure currently does not work for default images.
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not delete image" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    
+    [self.photos removeObjectAtIndex:index];
+    return YES;
+}
+
+- (BOOL) movePhotoAtIndex:(NSInteger)fromIndex to:(NSInteger)toIndex {
+    if (fromIndex >= [self.photos count] || fromIndex < 0 || toIndex >= [self.photos count] || toIndex < 0 || fromIndex == toIndex) {
+        return NO;
+    }
+    NSMutableDictionary *entry = [self.photos objectAtIndex:fromIndex];
+    [self.photos removeObjectAtIndex:fromIndex];
+    [self.photos insertObject:entry atIndex:toIndex];
+    
+    return YES;
+}
+
 - (NSInteger) count {
     return [photos count];
 }

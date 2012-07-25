@@ -39,6 +39,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[self navigationItem] setRightBarButtonItem: [self editButtonItem]];  
+    [[self navigationItem] setTitle:@"Photos"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -100,6 +103,10 @@
     return 90;
 }
 
+/*
+ *      returns a table view cell for row at indexPath
+ *      Assigns the image and text to the cell
+ */
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -186,6 +193,11 @@
 
 #pragma mark - Table view delegate
 
+
+/*
+ *      Event handler for row selection. presents full screen image
+ *
+ */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
@@ -199,7 +211,11 @@
     
 }
 
-// placeholder: handler for accessory button (blue arrow button on right side of table view)
+/*
+ *      Event handler for accessory button selection (the blue button with arrow on right side of row).
+ *      Presents editing view
+ *
+ */
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
     UIImage* imageToShow = [self getCroppedImageFromName:[photoData objectForKey:@"imageFile"]];
@@ -209,6 +225,36 @@
     [self.navigationController pushViewController:photoDetailViewController animated:YES];
 }
 
+
+
+
+// =======================   EDITING
+
+
+// allow editing for all rows
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// allow moving for all rows
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+// event handler for moving row 
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    [self.photos movePhotoAtIndex:fromIndexPath.row to:toIndexPath.row];
+}
+
+// event handler for deleting or inserting row
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // row change is a deletion
+        [self.photos removePhotoAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
 
 
 
