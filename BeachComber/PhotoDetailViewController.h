@@ -18,9 +18,13 @@
     UITextField *compositionField;
     UIPickerView *compositionPicker;
     
+    UITextField *activeField;
+    
     NSArray *categories;
     NSArray *compositions;
     NSMutableDictionary *entry;
+    
+    BOOL keyboardIsShown;
     
 }
 
@@ -35,8 +39,11 @@
 
 @property (nonatomic, retain) NSArray *categories;
 @property (nonatomic, retain) NSArray *compositions;
-@property (nonatomic, retain) NSString *selectedCategory;
 @property (nonatomic, retain) NSMutableDictionary *entry;
+
+@property (nonatomic, retain) UITextField *activeField;
+
+@property (nonatomic) BOOL keyboardIsShown;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
 

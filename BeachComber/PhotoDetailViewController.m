@@ -11,7 +11,7 @@
 
 @implementation PhotoDetailViewController
 
-@synthesize croppedImage, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, selectedCategory, entry;
+@synthesize croppedImage, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par
 {
@@ -97,7 +97,7 @@
     commentLabel.text = @"Comments:";
     currentY += commentLabel.frame.size.height + 10;    
     self.commentField = [[UITextField alloc] initWithFrame:CGRectMake(10, currentY, 300, 40)];
-    self.commentField.font = [UIFont fontWithName:@"Helvetica" size:13.0];
+    //self.commentField.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     self.commentField.borderStyle =  UITextBorderStyleRoundedRect;
     self.commentField.text = [self.entry objectForKey:@"comment"];
     self.commentField.delegate = self;
@@ -122,15 +122,29 @@
 {
     [super viewDidLoad];
    
-    
+    // register for keyboard notifications so that the scroll view frame can be resized
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillShow:) 
+                                                 name:UIKeyboardWillShowNotification 
+                                               object:self.view.window];
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(keyboardWillHide:) 
+                                                 name:UIKeyboardWillHideNotification 
+                                               object:self.view.window];
+    keyboardIsShown = NO;
 }
 
 
-- (void)viewDidUnload
+- (void)dealloc
 {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillShowNotification 
+                                                  object:nil]; 
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self 
+                                                    name:UIKeyboardWillHideNotification 
+                                                  object:nil]; 
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -173,13 +187,9 @@
 }
 
 
--(BOOL)textFieldShouldReturn:(UITextField *)theTextField
-{
-    if (theTextField == self.commentField) {
-        [theTextField resignFirstResponder];
-    }
-    return YES;
-} 
+
+
+
 - (void) compositionPickerButtonDone {
     self.compositionField.text = [compositions objectAtIndex:[self.compositionPicker selectedRowInComponent:0]];
     [self.compositionField resignFirstResponder];
@@ -195,6 +205,71 @@
     [self.entry setObject:self.categoryField.text forKey:@"category"];
     [self.entry setObject:self.compositionField.text forKey:@"composition"];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)theTextField
+{
+    if (theTextField == self.commentField) {
+        [theTextField resignFirstResponder];
+    }
+    return YES;
+} 
+
+// need to track active field so that view will scroll to that field when keyboard opens
+// NOTE: this message is not called for the text fields that use UIPickerView instead of the keyboard
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    self.activeField = textField;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.activeField = nil;
+}
+
+// resizes the scroll view when the keyboard disappears
+- (void)keyboardWillHide:(NSNotification *)n
+{
+    // get the size of the keyboard
+    CGSize keyboardSize = [[[n userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // resize the scrollview so its bottom is at bottom of the screen
+    CGRect viewFrame = self.view.frame;
+    viewFrame.size.height += (keyboardSize.height);
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    [self.view setFrame:viewFrame];
+    [UIView commitAnimations];
+    keyboardIsShown = NO;
+}
+
+// resizes the scroll view when the keyboard appears
+- (void)keyboardWillShow:(NSNotification *)n
+{
+    // do not resize if keyboard is already open
+    if (keyboardIsShown) {
+        return;
+    }
+    
+    UIScrollView *scrollView = (UIScrollView*) self.view;
+    // get the size of the keyboard
+    CGSize keyboardSize = [[[n userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    
+    // resize the view so its bottom is at the top of the keyboard
+    CGRect viewFrame = self.view.frame;
+    viewFrame.size.height -= keyboardSize.height;
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDuration:0.3];
+    [scrollView setFrame:viewFrame];
+    [UIView commitAnimations];
+    keyboardIsShown = YES;
+    
+    if (activeField != nil) {
+        [scrollView scrollRectToVisible:activeField.frame animated:YES];
+    }
 }
 
 
