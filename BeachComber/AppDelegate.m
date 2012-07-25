@@ -3,17 +3,16 @@
 //  BeachComber
 //
 //  Created by Jeff Proctor on 12-07-18.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
 
 #import "AppDelegate.h"
-#import "PhotoTableViewController.h"
+#import "BaseViewController.h"
 #import "PhotoData.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize photoViewController;
+@synthesize baseController;
 @synthesize photoData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -24,10 +23,9 @@
     
     self.photoData = [[PhotoData alloc] init];
     
-    photoViewController = [[PhotoTableViewController alloc] init];
-    photoViewController.photos = self.photoData;
+    baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
     
-    UINavigationController *navController=[[UINavigationController alloc] initWithRootViewController: self.photoViewController];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController: self.baseController];
     
     self.window.rootViewController = navController;
     //[self.window addSubview:photoViewController.view];
@@ -67,6 +65,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [self.photoData saveData];
     /*
      Called when the application is about to terminate.
      Save data if appropriate.

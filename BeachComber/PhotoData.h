@@ -3,7 +3,6 @@
 //  BeachComber
 //
 //  Created by Jeff Proctor on 12-07-20.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +15,7 @@
 
 - (void) saveData;
 - (NSInteger) count;
-- (void) addPhoto:(UIImage*) image WithTitle:(NSString*)title comment:(NSString*)comment category:(NSString*)category;
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image withComment:(NSString*)comment category:(NSString*)category;
 - (NSDictionary*) photoAtIndex: (NSInteger) index;
 
 @end

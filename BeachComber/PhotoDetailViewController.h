@@ -3,8 +3,8 @@
 //  BeachComber
 //
 //  Created by Jeff Proctor on 12-07-20.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
+@class PhotoData;
 
 #import <UIKit/UIKit.h>
 
@@ -17,6 +17,7 @@
     
     NSArray *categories;
     NSString *selectedCategory;
+    NSMutableDictionary *entry;
     
 }
 
@@ -27,9 +28,11 @@
 @property (nonatomic, retain) UIPickerView *categoryPicker;
 @property (nonatomic, retain) NSArray *categories;
 @property (nonatomic, retain) NSString *selectedCategory;
+@property (nonatomic, retain) NSMutableDictionary *entry;
 
-- (id)initWithImage:(UIImage*) image;
+- (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
 
 - (void) pickerButtonDone;
 - (void) pickerButtonCancel;
+- (void) saveEvent;
 @end

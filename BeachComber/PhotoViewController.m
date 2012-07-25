@@ -1,9 +1,9 @@
 //
 //  PhotoViewController.m
 //  BeachComber
+//  Simple view controller that presents a full screen image
 //
 //  Created by Jeff Proctor on 12-07-20.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
 
 #import "PhotoViewController.h"

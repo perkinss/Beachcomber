@@ -1,9 +1,9 @@
 //
 //  PhotoTableViewController.m
 //  BeachComber
+//  Presents all photos as a table view with a thumbnail on the left, and the category/comment on the right
 //
 //  Created by Jeff Proctor on 12-07-18.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
 
 #import "PhotoTableViewController.h"
@@ -16,14 +16,15 @@
 
 @synthesize photos;
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (id)initWithPhotoData:(PhotoData*) photoData
 {
-    self = [super initWithStyle:style];
+    self = [super init];
     if (self) {
-        // Custom initialization
+        self.photos = photoData;
     }
     return self;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -56,6 +57,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -109,7 +111,7 @@
     }
 
     NSDictionary *photoData =  (NSDictionary*) [photos photoAtIndex:indexPath.row];
-    cell.textLabel.text = [photoData objectForKey:@"title"];
+    cell.textLabel.text = [photoData objectForKey:@"category"];
     cell.detailTextLabel.text = [photoData objectForKey:@"comment"];
     cell.imageView.image = [self getCroppedImageFromName:[photoData objectForKey:@"imageFile"]];
     
@@ -188,7 +190,7 @@
 {
     // Navigation logic may go here. Create and push another view controller.
     // TODO: change this so it doesn't create a new UIViewController each time?
-    NSDictionary *photoData =  (NSDictionary*) [photos photoAtIndex:indexPath.row];
+    NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
     UIImage* imageToShow = [UIImage imageNamed: [photoData objectForKey:@"imageFile"]];
     PhotoViewController *photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
 
@@ -199,9 +201,9 @@
 
 // placeholder: handler for accessory button (blue arrow button on right side of table view)
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    NSDictionary *photoData =  (NSDictionary*) [photos photoAtIndex:indexPath.row];
+    NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
     UIImage* imageToShow = [self getCroppedImageFromName:[photoData objectForKey:@"imageFile"]];
-    PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:imageToShow];
+    PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:imageToShow entry:photoData];
     
     
     [self.navigationController pushViewController:photoDetailViewController animated:YES];

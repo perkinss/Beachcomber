@@ -1,9 +1,10 @@
 //
 //  PhotoData.m
 //  BeachComber
+//  Data structure for storing photos and their meta data
+//  includes functionality for writing and reading photo metadata to disk
 //
-//  Created by Jeff Proctor on 12-07-20.
-//  Copyright (c) 2012 University of British Columbia. All rights reserved.
+//  Created by Jeff Proctor on 12-07-20.\
 //
 
 #import "PhotoData.h"
@@ -17,7 +18,10 @@
     self = [super init];
     if (self) {
         NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"photo" ofType:@"plist"];
-        self.photos = [NSMutableArray arrayWithContentsOfFile:plistPath];
+        self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
+                                                                           options:NSPropertyListMutableContainers
+                                                                            format:NULL
+                                                                             error:NULL];
     }
     return self;
 }
@@ -30,7 +34,7 @@
     return [photos count];
 }
 
-- (void) addPhoto:(UIImage*) image WithTitle:(NSString*)title comment:(NSString*)comment category:(NSString*)category{
+- (NSMutableDictionary* ) addPhoto:(UIImage*) image withComment:(NSString*)comment category:(NSString*)category{
     NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -52,12 +56,12 @@
     [data writeToFile:uniqueFilename atomically:YES];
     
     [newPhoto setObject: uniqueFilename forKey:@"imageFile"];
-    [newPhoto setObject: title forKey:@"title"];
     [newPhoto setObject: comment forKey:@"comment"];
     [newPhoto setObject: category forKey:@"category"];
     
     [self.photos addObject:newPhoto];
-    [self saveData];  // Save every time a photo is added?
+    //[self saveData];  // Save every time a photo is added?
+    return newPhoto;
 }
 
 - (void) saveData {

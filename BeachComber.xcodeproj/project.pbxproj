@@ -24,10 +24,10 @@
 		C833E1BB15B7D94600EE636E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C833E1B915B7D94600EE636E /* InfoPlist.strings */; };
 		C833E1BE15B7D94600EE636E /* BeachComberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1BD15B7D94600EE636E /* BeachComberTests.m */; };
 		C833E1CE15B7DF8200EE636E /* PhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */; };
-		C833E1D115B913C500EE636E /* PhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1D015B913C500EE636E /* PhotoTableViewCell.m */; };
 		C833E1D715B91DBC00EE636E /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D415B91DBC00EE636E /* image1.png */; };
 		C833E1D815B91DBC00EE636E /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D515B91DBC00EE636E /* image2.png */; };
 		C833E1D915B91DBC00EE636E /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D615B91DBC00EE636E /* image3.png */; };
+		C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A5592015BCA12C0070FBA7 /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,11 +67,11 @@
 		C833E1BD15B7D94600EE636E /* BeachComberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeachComberTests.m; sourceTree = "<group>"; };
 		C833E1CC15B7DF8200EE636E /* PhotoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewController.h; sourceTree = "<group>"; };
 		C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewController.m; sourceTree = "<group>"; };
-		C833E1CF15B913C500EE636E /* PhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewCell.h; sourceTree = "<group>"; };
-		C833E1D015B913C500EE636E /* PhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewCell.m; sourceTree = "<group>"; };
 		C833E1D415B91DBC00EE636E /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
 		C833E1D515B91DBC00EE636E /* image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image2.png; sourceTree = "<group>"; };
 		C833E1D615B91DBC00EE636E /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
+		C8A5591F15BCA12C0070FBA7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		C8A5592015BCA12C0070FBA7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,15 +98,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C81BAD8C15B9E2DF00132A2E /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				C833E1CF15B913C500EE636E /* PhotoTableViewCell.h */,
-				C833E1D015B913C500EE636E /* PhotoTableViewCell.m */,
-			);
-			name = Deprecated;
-			sourceTree = "<group>";
-		};
 		C833E18915B7D94500EE636E = {
 			isa = PBXGroup;
 			children = (
@@ -140,18 +131,19 @@
 		C833E19E15B7D94500EE636E /* BeachComber */ = {
 			isa = PBXGroup;
 			children = (
-				C81BAD8C15B9E2DF00132A2E /* Deprecated */,
 				C833E19F15B7D94500EE636E /* Supporting Files */,
 				C833E1A715B7D94500EE636E /* AppDelegate.h */,
 				C833E1A815B7D94500EE636E /* AppDelegate.m */,
+				C8A5591F15BCA12C0070FBA7 /* BaseViewController.h */,
+				C8A5592015BCA12C0070FBA7 /* BaseViewController.m */,
 				C833E1CC15B7DF8200EE636E /* PhotoTableViewController.h */,
 				C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */,
-				C81BAD8915B9CC0E00132A2E /* PhotoData.h */,
-				C81BAD8A15B9CC0E00132A2E /* PhotoData.m */,
 				C81BAD8D15B9E35300132A2E /* PhotoViewController.h */,
 				C81BAD8E15B9E35300132A2E /* PhotoViewController.m */,
 				C81BAD9015B9E36900132A2E /* PhotoDetailViewController.h */,
 				C81BAD9115B9E36900132A2E /* PhotoDetailViewController.m */,
+				C81BAD8915B9CC0E00132A2E /* PhotoData.h */,
+				C81BAD8A15B9CC0E00132A2E /* PhotoData.m */,
 			);
 			path = BeachComber;
 			sourceTree = "<group>";
@@ -305,10 +297,10 @@
 				C833E1A515B7D94500EE636E /* main.m in Sources */,
 				C833E1A915B7D94500EE636E /* AppDelegate.m in Sources */,
 				C833E1CE15B7DF8200EE636E /* PhotoTableViewController.m in Sources */,
-				C833E1D115B913C500EE636E /* PhotoTableViewCell.m in Sources */,
 				C81BAD8B15B9CC0E00132A2E /* PhotoData.m in Sources */,
 				C81BAD8F15B9E35300132A2E /* PhotoViewController.m in Sources */,
 				C81BAD9215B9E36900132A2E /* PhotoDetailViewController.m in Sources */,
+				C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
