@@ -46,5 +46,4 @@
 - (void) compositionPickerButtonDone;
 - (void) compositionPickerButtonCancel;
 - (void) saveEvent;
-- (IBAction)textFieldReturn:(UITextField *)theTextField; 
 @end

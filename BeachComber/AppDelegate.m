@@ -22,6 +22,28 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.photoData = [[PhotoData alloc] init];
+    if ([self.photoData count] == 0) {
+        NSMutableDictionary *entry;
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"]];
+        [entry setObject:@"placeholder" forKey:@"comment"];
+        [entry setObject:@"Wreckage" forKey:@"category"];
+        [entry setObject:@"Contrete" forKey:@"composition"];
+        
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"]];
+        [entry setObject:@"placeholder" forKey:@"comment"];
+        [entry setObject:@"Animal" forKey:@"category"];
+        [entry setObject:@"Mixed/Other" forKey:@"composition"];
+        
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"]];
+        [entry setObject:@"placeholder" forKey:@"comment"];
+        [entry setObject:@"Animal" forKey:@"category"];
+        [entry setObject:@"Mixed/Other" forKey:@"composition"];
+        
+        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"]];
+        [entry setObject:@"placeholder" forKey:@"comment"];
+        [entry setObject:@"Wreckage" forKey:@"category"];
+        [entry setObject:@"Contrete" forKey:@"composition"];
+    }
     
     baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
     

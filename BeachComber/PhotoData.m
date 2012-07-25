@@ -101,4 +101,11 @@
     [self.photos writeToFile:plistPath atomically:YES];
 }
 
+- (UIImage*) photoImageAtIndex: (NSInteger) index {
+    NSMutableDictionary* entry = [self.photos objectAtIndex:index];
+    NSString* fileName = [entry objectForKey:@"imageFile"];
+    UIImage* image = [[UIImage alloc] initWithContentsOfFile:fileName];
+    return image;
+}
+
 @end

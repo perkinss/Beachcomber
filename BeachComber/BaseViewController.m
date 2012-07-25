@@ -110,7 +110,6 @@
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
     
-    //[[picker parentViewController] dismissModalViewControllerAnimated: YES];
     [self dismissModalViewControllerAnimated: YES];
 }
 

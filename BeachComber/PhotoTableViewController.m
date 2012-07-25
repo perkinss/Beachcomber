@@ -120,7 +120,7 @@
     NSDictionary *photoData =  (NSDictionary*) [photos photoAtIndex:indexPath.row];
     cell.textLabel.text = [photoData objectForKey:@"category"];
     cell.detailTextLabel.text = [photoData objectForKey:@"comment"];
-    cell.imageView.image = [self getCroppedImageFromName:[photoData objectForKey:@"imageFile"]];
+    cell.imageView.image = [self getCroppedImageFromImage:[self.photos photoImageAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -128,8 +128,7 @@
 /*
  * Retrieves named image, and crops from center point of image to preserve 3:4 aspect ratio.
  */
-- (UIImage *)getCroppedImageFromName:(NSString *)name {
-    UIImage* uncroppedImage = [UIImage imageNamed:name];
+- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage {
     int imgWidth = uncroppedImage.size.width;
     int imgHeight = uncroppedImage.size.height;
     int cropHeight, cropWidth, cropX, cropY;
@@ -200,13 +199,10 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
     // TODO: change this so it doesn't create a new UIViewController each time?
-    NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
-    UIImage* imageToShow = [UIImage imageNamed: [photoData objectForKey:@"imageFile"]];
+    UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
     PhotoViewController *photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
 
-     // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:photoViewController animated:YES];
     
 }
@@ -218,7 +214,7 @@
  */
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
-    UIImage* imageToShow = [self getCroppedImageFromName:[photoData objectForKey:@"imageFile"]];
+    UIImage* imageToShow = [self getCroppedImageFromImage:[self.photos photoImageAtIndex:indexPath.row]];
     PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:imageToShow entry:photoData];
     
     

@@ -2,49 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
- <dict>
-     <key>imageFile</key>
-     <string>image1.png</string>
-     <key>title</key>
-     <string>Title 1 (plist)</string>
-     <key>comment</key>
-     <string>comment 1 (plist)</string>
-     <key>category</key>
-     <string>category1</string>
- </dict>
- 
-  <dict>
-      <key>imageFile</key>
-      <string>image2.png</string>
-      <key>title</key>
-      <string>Title 2 (plist)</string>
-      <key>comment</key>
-      <string>comment 2 (plist)</string>
-      <key>category</key>
-      <string>category3</string>
- </dict>
- 
-  <dict>
-      <key>imageFile</key>
-      <string>image3.png</string>
-      <key>title</key>
-      <string>Title 3 (plist)</string>
-      <key>comment</key>
-      <string>comment 3 (plist)</string>
-      <key>category</key>
-      <string>category3</string>
- </dict>
-    
-    <dict>
-        <key>imageFile</key>
-        <string>image4.png</string>
-        <key>title</key>
-        <string>Title 4 (plist)</string>
-        <key>comment</key>
-        <string>comment 4 (plist)</string>
-        <key>category</key>
-        <string>category4</string>
-    </dict>
 
 </array>
 </plist>
