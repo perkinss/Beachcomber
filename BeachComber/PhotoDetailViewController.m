@@ -77,6 +77,7 @@
     self.commentField.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     self.commentField.borderStyle =  UITextBorderStyleRoundedRect;
     self.commentField.text = [self.entry objectForKey:@"comment"];
+    self.commentField.delegate = self;
     scrollView.contentSize = CGSizeMake(fullScreen.size.width,currentY + self.commentField.frame.size.height + 10);
     
     [scrollView addSubview:self.imageView];
@@ -132,6 +133,14 @@
     [self.categoryField resignFirstResponder];
     
 }
+
+-(BOOL)textFieldShouldReturn:(UITextField *)theTextField
+{
+    if (theTextField == self.commentField) {
+        [theTextField resignFirstResponder];
+    }
+    return YES;
+} 
                       
 
 - (void) saveEvent {
@@ -139,6 +148,6 @@
     [self.entry setObject:self.categoryField.text forKey:@"category"];
     [self.navigationController popViewControllerAnimated:YES];
 }
-                                            
+
 
 @end

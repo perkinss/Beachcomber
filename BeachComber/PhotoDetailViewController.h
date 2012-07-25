@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoDetailViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource> {
+@interface PhotoDetailViewController : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
     UIImage *croppedImage;
     UIImageView *imageView;
     UITextField *commentField;
@@ -35,4 +35,6 @@
 - (void) pickerButtonDone;
 - (void) pickerButtonCancel;
 - (void) saveEvent;
+- (IBAction)textFieldReturn:(UITextField *)theTextField; 
+- (IBAction)textFieldDidEndEditing:(UITextField *)textField:(id)sender;
 @end
