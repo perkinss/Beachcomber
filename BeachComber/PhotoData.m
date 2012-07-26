@@ -17,11 +17,25 @@
 - (id)init {
     self = [super init];
     if (self) {
-        NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"photo" ofType:@"plist"];
-        self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
-                                                                           options:NSPropertyListMutableContainers
-                                                                            format:NULL
-                                                                             error:NULL];
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSError *fileError = [[NSError alloc] init];
+        NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
+      
+        if ([fileManager fileExistsAtPath:plistPath] ) {
+            // NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"photo" ofType:@"plist"];
+            self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
+                                                                    options:NSPropertyListMutableContainers
+                                                                     format:NULL
+                                                                      error:&fileError];
+            if([fileError localizedFailureReason] != nil) {
+                NSString *err = [fileError localizedFailureReason]; 
+                NSLog(@"Error: %@",err);
+            }
+        } else {
+            self.photos = [[NSMutableArray alloc] init];
+        }
+        
     }
     return self;
 }
@@ -109,7 +123,9 @@
 }
 
 - (void) saveData {
-    NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"photo" ofType:@"plist"];
+   
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
     [self.photos writeToFile:plistPath atomically:YES];
 }
 

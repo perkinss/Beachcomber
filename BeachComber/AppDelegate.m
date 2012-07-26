@@ -22,27 +22,33 @@
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.photoData = [[PhotoData alloc] init];
-    if ([self.photoData count] == 0) {
-        NSMutableDictionary *entry;
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
-        [entry setObject:@"placeholder" forKey:@"comment"];
-        [entry setObject:@"Wreckage" forKey:@"category"];
-        [entry setObject:@"Concrete" forKey:@"composition"];
-        
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
-        [entry setObject:@"placeholder" forKey:@"comment"];
-        [entry setObject:@"Animal" forKey:@"category"];
-        [entry setObject:@"Mixed/Other" forKey:@"composition"];
-        
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
-        [entry setObject:@"placeholder" forKey:@"comment"];
-        [entry setObject:@"Animal" forKey:@"category"];
-        [entry setObject:@"Mixed/Other" forKey:@"composition"];
-        
-        entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"] withLocation:nil];
-        [entry setObject:@"placeholder" forKey:@"comment"];
-        [entry setObject:@"Wreckage" forKey:@"category"];
-        [entry setObject:@"Concrete" forKey:@"composition"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
+    if ( ![fileManager fileExistsAtPath:plistPath] ) {
+        if ([self.photoData count] == 0) {
+            NSMutableDictionary *entry;
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
+            [entry setObject:@"placeholder" forKey:@"comment"];
+            [entry setObject:@"Wreckage" forKey:@"category"];
+            [entry setObject:@"Concrete" forKey:@"composition"];
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
+            [entry setObject:@"placeholder" forKey:@"comment"];
+            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Mixed/Other" forKey:@"composition"];
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
+            [entry setObject:@"placeholder" forKey:@"comment"];
+            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Mixed/Other" forKey:@"composition"];
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"] withLocation:nil];
+            [entry setObject:@"placeholder" forKey:@"comment"];
+            [entry setObject:@"Wreckage" forKey:@"category"];
+            [entry setObject:@"Concrete" forKey:@"composition"];
+        }
     }
     
     baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
@@ -65,6 +71,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+        [self.photoData saveData];
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
@@ -87,6 +94,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    //this doesn't usually get called :(
     [self.photoData saveData];
     /*
      Called when the application is about to terminate.

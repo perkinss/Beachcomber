@@ -18,8 +18,8 @@
     self = [super init];
     if (self) {
         self.croppedImage = image;
-        self.categories = [NSArray arrayWithObjects:@"animal", @"wreckage", @"machinery", @"person", nil];
-        self.compositions = [NSArray arrayWithObjects:@"Building material", @"Marine equipment", @"Container/packaging", @"Vehicle parts", @"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
+        self.categories = [NSArray arrayWithObjects:@"Building Material", @"Marine equipment", @"Container/Packaging", @"Vehicle parts", @"Other", nil];
+        self.compositions = [NSArray arrayWithObjects:@"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
         //[self.navigation
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.entry = entry_par;

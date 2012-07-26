@@ -80,8 +80,7 @@
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
-
+# pragma mark - location and buttons
 //  called when new location data is received
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
@@ -91,25 +90,32 @@
 }
 
 - (void) cameraButton {
-    if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
-        UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
-        cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-        // Displays a control that allows the user to choose picture or
-        // movie capture, if both are available:
-        cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
-    
-        // Hides the controls for moving & scaling pictures, or for
-        // trimming movies. To instead show the controls, use YES.
-        cameraUI.allowsEditing = YES;
-    
-        cameraUI.delegate = self;
-    
-        [self presentModalViewController: cameraUI animated: YES];
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Camera not available on this device" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    if ([CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorized) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Location services are not available.  Please enable location services under Settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
+    } else {
+        if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+            cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+            // Displays a control that allows the user to choose picture or
+            // movie capture, if both are available:
+            cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
+            
+            // Hides the controls for moving & scaling pictures, or for
+            // trimming movies. To instead show the controls, use YES.
+            cameraUI.allowsEditing = YES;
+            
+            cameraUI.delegate = self;
+            
+            
+            [self presentModalViewController: cameraUI animated: YES];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Camera not available on this device" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            [alert show];
+        }
     }
     //return YES;
 }
@@ -148,5 +154,6 @@
     PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:imageToSave entry:newEntry];
     [self.navigationController pushViewController:detailView animated:YES];
 }
+
 
 @end
