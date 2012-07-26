@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		088E99BC15C0BEED00823D7A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */; };
+		088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E99BB15C0BEED00823D7A /* CoreImage.framework */; };
 		C81BAD8515B9C00B00132A2E /* photo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C81BAD8415B9C00B00132A2E /* photo.plist */; };
 		C81BAD8B15B9CC0E00132A2E /* PhotoData.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BAD8A15B9CC0E00132A2E /* PhotoData.m */; };
 		C81BAD8F15B9E35300132A2E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BAD8E15B9E35300132A2E /* PhotoViewController.m */; };
@@ -42,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		088E99BB15C0BEED00823D7A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		C81BAD8415B9C00B00132A2E /* photo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = photo.plist; sourceTree = "<group>"; };
 		C81BAD8915B9CC0E00132A2E /* PhotoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoData.h; sourceTree = "<group>"; };
 		C81BAD8A15B9CC0E00132A2E /* PhotoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoData.m; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				088E99BC15C0BEED00823D7A /* AssetsLibrary.framework in Frameworks */,
+				088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */,
 				C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */,
 				C833E19915B7D94500EE636E /* UIKit.framework in Frameworks */,
 				C833E19B15B7D94500EE636E /* Foundation.framework in Frameworks */,
@@ -123,7 +129,9 @@
 		C833E19715B7D94500EE636E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				088E99BB15C0BEED00823D7A /* CoreImage.framework */,
 				C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */,
+				088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */,
 				C833E19815B7D94500EE636E /* UIKit.framework */,
 				C833E19A15B7D94500EE636E /* Foundation.framework */,
 				C833E19C15B7D94500EE636E /* CoreGraphics.framework */,
