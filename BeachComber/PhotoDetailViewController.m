@@ -94,7 +94,7 @@
     self.compositionField.inputView = self.compositionPicker;
     self.compositionField.inputAccessoryView = compositionToolbar;
     self.compositionField.text = [self.entry objectForKey:@"composition"];
-    self.compositionField.text = @"What is it made of? ...";
+    self.compositionField.placeholder = @"What is it made of? ...";
     
     UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
     commentLabel.text = @"Comments:";
