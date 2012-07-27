@@ -20,7 +20,7 @@
         self.croppedImage = image;
         self.categories = [NSArray arrayWithObjects:@"Building Material", @"Marine equipment", @"Container/Packaging", @"Vehicle parts", @"Other", nil];
         self.compositions = [NSArray arrayWithObjects:@"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
-        //[self.navigation
+    
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.entry = entry_par;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveEvent)];
@@ -49,6 +49,7 @@
     self.imageView = [[UIImageView alloc] initWithImage:croppedImage];
     currentY += self.imageView.frame.size.height + 10;
     
+    
     self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0,40,0,0)];
     self.categoryPicker.showsSelectionIndicator = YES;
     self.categoryPicker.delegate = self;
@@ -70,6 +71,7 @@
     self.categoryField.inputView = self.categoryPicker;
     self.categoryField.inputAccessoryView = categoryToolbar;
     self.categoryField.text = [self.entry objectForKey:@"category"];
+    self.categoryField.placeholder = @"Select a category ...";
     
     self.compositionPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0,40,0,0)];
     self.compositionPicker.showsSelectionIndicator = YES;
@@ -92,6 +94,7 @@
     self.compositionField.inputView = self.compositionPicker;
     self.compositionField.inputAccessoryView = compositionToolbar;
     self.compositionField.text = [self.entry objectForKey:@"composition"];
+    self.compositionField.text = @"What is it made of? ...";
     
     UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
     commentLabel.text = @"Comments:";
@@ -101,6 +104,7 @@
     self.commentField.borderStyle =  UITextBorderStyleRoundedRect;
     self.commentField.text = [self.entry objectForKey:@"comment"];
     self.commentField.delegate = self;
+    self.commentField.placeholder = @"Enter other details ... ";
     currentY += self.commentField.frame.size.height + 10;
     scrollView.contentSize = CGSizeMake(fullScreen.size.width, currentY);
     

@@ -22,8 +22,8 @@
         NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
       
-        if ([fileManager fileExistsAtPath:plistPath] ) {
-            // NSString* plistPath = [[NSBundle mainBundle] pathForResource:@"photo" ofType:@"plist"];
+        if ([fileManager fileExistsAtPath:plistPath]) {
+            
             self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
                                                                     options:NSPropertyListMutableContainers
                                                                      format:NULL
