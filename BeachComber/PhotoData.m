@@ -138,7 +138,8 @@
 
 
 - (void) uploadPhotosInSet:(NSSet*) photoSet {
-    
+    UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"beachcomber" create:NO];
+    NSString* uid = pasteboard.string;
 }
 
 

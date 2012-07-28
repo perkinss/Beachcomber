@@ -17,6 +17,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // store unique app identifier on a persistent pasteboard
+    UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"beachcomber" create:YES];
+    pasteboard.persistent = YES;
+    if (pasteboard.string == nil) {
+        // id has not been set yet, so create it
+        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
+        NSString *uuidString = (__bridge NSString *)CFUUIDCreateString(NULL,uuidRef);
+        CFRelease(uuidRef);
+        pasteboard.string = uuidString;
+    }
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
