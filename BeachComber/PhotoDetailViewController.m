@@ -20,7 +20,7 @@
         self.croppedImage = image;
         self.categories = [NSArray arrayWithObjects:@"Building Material", @"Marine equipment", @"Container/Packaging", @"Vehicle parts", @"Other", nil];
         self.compositions = [NSArray arrayWithObjects:@"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
-    
+        
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.entry = entry_par;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveEvent)];
@@ -46,7 +46,14 @@
     UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:fullScreen];
     NSInteger currentY = 10;
     
-    self.imageView = [[UIImageView alloc] initWithImage:croppedImage];
+    //self.imageView = [[UIImageView alloc] initWithImage:croppedImage];
+    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
+    CGFloat maxThumbHeight = 100;
+    CGSize viewSize = [self getProportion:sizeOfScreen imageToSize:croppedImage maximumHeight:maxThumbHeight];
+    
+    CGRect newFrame = CGRectMake(10, currentY, viewSize.width, viewSize.height);
+    self.imageView = [[UIImageView alloc] initWithFrame:newFrame];
+    self.imageView.image = croppedImage;
     currentY += self.imageView.frame.size.height + 10;
     
     
@@ -84,7 +91,7 @@
     [compositionItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(compositionPickerButtonDone)]];    
     [compositionItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(compositionPickerButtonCancel)]];
     [compositionToolbar setItems:compositionItems animated:NO];
-        
+    
     UILabel* compositionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
     compositionLabel.text = @"Composition:";
     currentY += compositionLabel.frame.size.height + 10;                       
@@ -125,7 +132,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    
     // register for keyboard notifications so that the scroll view frame can be resized
     [[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(keyboardWillShow:) 
@@ -202,7 +209,7 @@
     [self.compositionField resignFirstResponder];
     
 }
-                     
+
 
 - (void) saveEvent {
     [self.entry setObject:self.commentField.text forKey:@"comment"];
@@ -274,6 +281,36 @@
     if (activeField != nil) {
         [scrollView scrollRectToVisible:activeField.frame animated:YES];
     }
+}
+
+- (CGSize)getProportion:(CGSize)sizeOfScreen imageToSize:(UIImage *)theImage maximumHeight:(CGFloat)maxHeight {
+    
+    CGFloat ht = theImage.size.height;
+    CGFloat wd = theImage.size.width;
+    CGFloat maxWidth = sizeOfScreen.width - 120;
+    CGFloat newHeight = 0;
+    CGFloat newWidth = 0;
+    
+    if (ht > wd) {
+        
+        if (ht > maxHeight) {
+            newHeight = maxHeight;
+        } else {
+            newHeight = ht;
+        }
+        newWidth = newWidth * wd / ht;        
+        
+    } else {
+        if (wd > maxWidth) {
+            newWidth = maxWidth;
+        } else {
+            newWidth = wd;
+        }
+        
+        newHeight = newWidth * ht / wd;
+    }
+    
+    return CGSizeMake(newWidth, newHeight);
 }
 
 
