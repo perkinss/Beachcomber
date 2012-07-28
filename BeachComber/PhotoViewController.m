@@ -31,13 +31,19 @@
 
 #pragma mark - View lifecycle
 
-/*
+
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    self.imageView = [[UIImageView alloc] initWithFrame:CGREctMake];
+    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    self.imageView = [[UIImageView alloc] initWithImage:image];
+    scrollView.contentSize = self.imageView.frame.size;
+    scrollView.scrollEnabled = YES;
+
+    [scrollView addSubview:self.imageView];
+    self.view = scrollView;
 }
-*/
+
 
 
 
@@ -45,11 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.autoresizesSubviews = YES;
-    self.imageView = [[UIImageView alloc] initWithImage:image];
-    [self.imageView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
-    self.imageView.center = self.view.center;
-    [self.view addSubview:self.imageView];
 }
 
 
