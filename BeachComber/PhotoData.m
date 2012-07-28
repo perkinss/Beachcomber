@@ -136,4 +136,10 @@
     return image;
 }
 
+
+- (void) uploadPhotosInSet:(NSSet*) photoSet {
+    
+}
+
+
 @end

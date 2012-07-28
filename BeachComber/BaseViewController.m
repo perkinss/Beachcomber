@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 #import "PhotoTableViewController.h"
 #import "PhotoDetailViewController.h"
+#import "PhotoSelectionViewController.h"
 #import "PhotoData.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <CoreLocation/CoreLocation.h>
@@ -63,8 +64,14 @@
     [tableButton addTarget:self action:@selector(dataButton) forControlEvents:UIControlEventTouchDown];
     [tableButton setTitle:@"View images" forState:UIControlStateNormal];
     
+    UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    uploadButton.frame = CGRectMake(10, 130, 250, 50);
+    [uploadButton addTarget:self action:@selector(uploadButton) forControlEvents:UIControlEventTouchDown];
+    [uploadButton setTitle:@"Upload images" forState:UIControlStateNormal];
+    
     [self.view addSubview:photoButton];
     [self.view addSubview:tableButton];
+    [self.view addSubview:uploadButton];
 }
 
 
@@ -123,6 +130,11 @@
 - (void) dataButton {
     PhotoTableViewController *tableViewController = [[PhotoTableViewController alloc] initWithPhotoData:self.photos];
     [self.navigationController pushViewController:tableViewController animated:YES];
+}
+
+- (void) uploadButton {
+    PhotoSelectionViewController *selectionViewController = [[PhotoSelectionViewController alloc] initWithPhotoData:self.photos];
+    [self.navigationController pushViewController:selectionViewController animated:YES];
 }
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {
