@@ -10,6 +10,7 @@
 #import "PhotoTableViewController.h"
 #import "PhotoDetailViewController.h"
 #import "PhotoSelectionViewController.h"
+#import "InfoViewController.h"
 #import "PhotoData.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <CoreLocation/CoreLocation.h>
@@ -53,7 +54,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     int buttonWidth = 240;
     int buttonHeight = 50;
@@ -78,10 +79,18 @@
     currentY += buttonHeight + margin;
     [uploadButton addTarget:self action:@selector(uploadButton) forControlEvents:UIControlEventTouchDown];
     [uploadButton setTitle:@"Upload images" forState:UIControlStateNormal];
+        
+    UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    infoButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
+    currentY += buttonHeight + margin;
+    [infoButton addTarget:self action:@selector(infoButton) forControlEvents:UIControlEventTouchDown];
+    [infoButton setTitle:@"Help / About" forState:UIControlStateNormal];
+
     
     [self.view addSubview:photoButton];
     [self.view addSubview:tableButton];
     [self.view addSubview:uploadButton];
+    [self.view addSubview:infoButton];
 }
 
 
@@ -145,6 +154,11 @@
 - (void) uploadButton {
     PhotoSelectionViewController *selectionViewController = [[PhotoSelectionViewController alloc] initWithPhotoData:self.photos];
     [self.navigationController pushViewController:selectionViewController animated:YES];
+}
+- (void) infoButton {
+    InfoViewController *infoViewController = [[InfoViewController alloc] init];
+    infoViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self.navigationController pushViewController:infoViewController animated:YES];
 }
 
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker {

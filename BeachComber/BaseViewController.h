@@ -26,5 +26,6 @@
 - (void) cameraButton;
 - (void) dataButton;
 - (void) uploadButton;
+- (void) infoButton;
 
 @end
