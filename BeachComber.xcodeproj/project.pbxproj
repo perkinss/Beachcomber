@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		088E99BC15C0BEED00823D7A /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */; };
 		088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E99BB15C0BEED00823D7A /* CoreImage.framework */; };
-		C81BAD8515B9C00B00132A2E /* photo.plist in Resources */ = {isa = PBXBuildFile; fileRef = C81BAD8415B9C00B00132A2E /* photo.plist */; };
+		68CD875B15C3A519006AF69C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68CD875A15C3A519006AF69C /* ImageIO.framework */; };
 		C81BAD8B15B9CC0E00132A2E /* PhotoData.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BAD8A15B9CC0E00132A2E /* PhotoData.m */; };
 		C81BAD8F15B9E35300132A2E /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BAD8E15B9E35300132A2E /* PhotoViewController.m */; };
 		C81BAD9215B9E36900132A2E /* PhotoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81BAD9115B9E36900132A2E /* PhotoDetailViewController.m */; };
@@ -47,7 +46,7 @@
 /* Begin PBXFileReference section */
 		088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		088E99BB15C0BEED00823D7A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
-		C81BAD8415B9C00B00132A2E /* photo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = photo.plist; sourceTree = "<group>"; };
+		68CD875A15C3A519006AF69C /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		C81BAD8915B9CC0E00132A2E /* PhotoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoData.h; sourceTree = "<group>"; };
 		C81BAD8A15B9CC0E00132A2E /* PhotoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoData.m; sourceTree = "<group>"; };
 		C81BAD8D15B9E35300132A2E /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -88,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				088E99BC15C0BEED00823D7A /* AssetsLibrary.framework in Frameworks */,
+				68CD875B15C3A519006AF69C /* ImageIO.framework in Frameworks */,
 				088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */,
 				C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */,
 				C833E19915B7D94500EE636E /* UIKit.framework in Frameworks */,
@@ -132,6 +131,7 @@
 		C833E19715B7D94500EE636E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				68CD875A15C3A519006AF69C /* ImageIO.framework */,
 				088E99BB15C0BEED00823D7A /* CoreImage.framework */,
 				C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */,
 				088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */,
@@ -168,7 +168,6 @@
 		C833E19F15B7D94500EE636E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C81BAD8415B9C00B00132A2E /* photo.plist */,
 				C833E1D415B91DBC00EE636E /* image1.png */,
 				C833E1D515B91DBC00EE636E /* image2.png */,
 				C833E1D615B91DBC00EE636E /* image3.png */,
@@ -275,7 +274,6 @@
 				C833E1D715B91DBC00EE636E /* image1.png in Resources */,
 				C833E1D815B91DBC00EE636E /* image2.png in Resources */,
 				C833E1D915B91DBC00EE636E /* image3.png in Resources */,
-				C81BAD8515B9C00B00132A2E /* photo.plist in Resources */,
 				C81BAD9415B9F9E200132A2E /* image4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
