@@ -154,7 +154,8 @@
 
 
 - (void) uploadPhotosInSet:(NSSet*) photoSet {
-    
+    UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"beachcomber" create:NO];
+    NSString* uid = pasteboard.string;
 }
 
 - (UIImage *) makeThumb: (UIImage *)theImage imageURL:(NSURL *)atTheURL {

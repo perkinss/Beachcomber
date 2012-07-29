@@ -54,18 +54,28 @@
 {
     [super viewDidLoad];
     
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    int buttonWidth = 240;
+    int buttonHeight = 50;
+    int margin = 10;
+    int currentY = 50;
+    int buttonX = (screenRect.size.width - buttonWidth)/2;
+    
     UIButton *photoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    photoButton.frame = CGRectMake(10, 10, 250, 50);
+    photoButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
+    currentY += buttonHeight + margin;
     [photoButton addTarget:self action:@selector(cameraButton) forControlEvents:UIControlEventTouchDown];
     [photoButton setTitle:@"Take a photo" forState:UIControlStateNormal];
 
     UIButton *tableButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    tableButton.frame = CGRectMake(10, 70, 250, 50);
+    tableButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
+    currentY += buttonHeight + margin;
     [tableButton addTarget:self action:@selector(dataButton) forControlEvents:UIControlEventTouchDown];
     [tableButton setTitle:@"View images" forState:UIControlStateNormal];
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    uploadButton.frame = CGRectMake(10, 130, 250, 50);
+    uploadButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
+    currentY += buttonHeight + margin;
     [uploadButton addTarget:self action:@selector(uploadButton) forControlEvents:UIControlEventTouchDown];
     [uploadButton setTitle:@"Upload images" forState:UIControlStateNormal];
     
