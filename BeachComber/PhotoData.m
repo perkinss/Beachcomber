@@ -8,7 +8,10 @@
 //
 
 #import "PhotoData.h"
+#import <CoreGraphics/CoreGraphics.h>
+#import <ImageIO/CGImageSource.h>
 #define photoPlist @"photo.plist"
+
 
 @implementation PhotoData
 
@@ -86,12 +89,13 @@
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSArray *existingFiles = [fileManager contentsOfDirectoryAtPath:docDir error:nil];
     NSString *uniqueFilename;
+    NSString *uniqueThumbname;
     do {
         CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
         CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
         
         uniqueFilename = [[docDir stringByAppendingPathComponent:(__bridge NSString *)newUniqueIdString] stringByAppendingPathExtension: @"png"];
-        
+        uniqueThumbname = [[docDir stringByAppendingPathComponent:(__bridge NSString *)newUniqueIdString] stringByAppendingPathExtension: @"thumb.png"];
         CFRelease(newUniqueId);
         CFRelease(newUniqueIdString);
     } while ([existingFiles containsObject:uniqueFilename]);
@@ -100,6 +104,12 @@
 	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
     [data writeToFile:uniqueFilename atomically:YES];
     
+    NSURL *fileURL = [NSURL fileURLWithPath:uniqueFilename];    
+    UIImage *thumb = [self makeThumb:image imageURL:fileURL];
+    NSData *thumbdata = [NSData dataWithData:UIImagePNGRepresentation(thumb)];
+    [thumbdata writeToFile:uniqueThumbname atomically:YES];
+    
+    [newPhoto setObject: uniqueThumbname forKey:@"thumbnail"];
     [newPhoto setObject: uniqueFilename forKey:@"imageFile"];
     [newPhoto setObject: @"" forKey:@"comment"];
     [newPhoto setObject: @"" forKey:@"category"];
@@ -118,7 +128,6 @@
     [newPhoto setObject:dateString forKey:@"timestamp"];
     
     [self.photos addObject:newPhoto];
-    //[self saveData];  // Save every time a photo is added?
     return newPhoto;
 }
 
@@ -136,10 +145,79 @@
     return image;
 }
 
+- (UIImage*) thumbImageAtIndex: (NSInteger) index {
+    NSMutableDictionary* entry = [self.photos objectAtIndex:index];
+    NSString* fileName = [entry objectForKey:@"thumbnail"];
+    UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:fileName];
+    return thumb;
+}
+
 
 - (void) uploadPhotosInSet:(NSSet*) photoSet {
     
 }
 
+- (UIImage *) makeThumb: (UIImage *)theImage imageURL:(NSURL *)atTheURL {
+    
+ 
+    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)atTheURL, NULL);
+    CGImageRef thumbRef;
+    UIImage* thumb = nil;
+    UIImageOrientation imageOrientation = theImage.imageOrientation;
+    if (imageSource) {
+        NSNumber *pixelSize = [NSNumber numberWithInteger:(NSInteger)120];
+        CFDictionaryRef options = (__bridge CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
+                                                             (id)kCFBooleanFalse, (id)kCGImageSourceCreateThumbnailWithTransform, 
+                                                             (id)kCFBooleanTrue, (id)kCGImageSourceCreateThumbnailFromImageIfAbsent, 
+                                                             (id)pixelSize, (id)kCGImageSourceThumbnailMaxPixelSize, nil];
+        thumbRef = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options);
+        if (thumbRef) {
+            CGImageSourceCopyProperties(imageSource, options);
+            CGFloat ascale = 0.5;
+            thumb = [UIImage imageWithCGImage:thumbRef scale:ascale orientation:imageOrientation];
+            //+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation
+            
+/*          // log section if needed
+            UIImageOrientation thumbOrientation = thumb.imageOrientation;
+            switch (thumbOrientation) {
+                case UIImageOrientationUp:
+                    NSLog(@"Thumb up");
+                    break;
+                case UIImageOrientationDown:
+                    NSLog(@"Thumb down");
+                    break;
+                case UIImageOrientationLeft:
+                    NSLog(@"Thumb left");
+                    break;
+                    
+                default:
+                    NSLog(@"Thumb must be right");
+                    break;
+            } 
+            switch (imageOrientation) {
+                case UIImageOrientationUp:
+                    NSLog(@"Image up");
+                    break;
+                case UIImageOrientationDown:
+                    NSLog(@"Image down");
+                    break;
+                case UIImageOrientationLeft:
+                    NSLog(@"Image left");
+                    break;
+                    
+                default:
+                    NSLog(@"Image must be right");
+                    break;
+            }
+ */
+                
+        }
+ //Only use this if we are not doing ARC:           
+//        CFRelease(imageSource);
+//        CFRelease(thumbRef);
+//        CFRelease(options);
+    } 
+    return thumb;
+}
 
 @end

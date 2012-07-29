@@ -11,13 +11,14 @@
 
 @implementation PhotoDetailViewController
 
-@synthesize croppedImage, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField;
+@synthesize thumb, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par
 {
     self = [super init];
     if (self) {
-        self.croppedImage = image;
+        self.thumb = image;
+        //NSLog(@"Thumb size = %f x %f", thumb.size.width, thumb.size.height); 
         self.categories = [NSArray arrayWithObjects:@"Building Material", @"Marine equipment", @"Container/Packaging", @"Vehicle parts", @"Other", nil];
         self.compositions = [NSArray arrayWithObjects:@"Plastic", @"Wood", @"Rubber", @"Metal", @"Concrete", @"Mixed/Other", nil];
         
@@ -46,14 +47,8 @@
     UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:fullScreen];
     NSInteger currentY = 10;
     
-    //self.imageView = [[UIImageView alloc] initWithImage:croppedImage];
-    CGSize sizeOfScreen = [[UIScreen mainScreen] bounds].size;
-    CGFloat maxThumbHeight = 100;
-    CGSize viewSize = [self getProportion:sizeOfScreen imageToSize:croppedImage maximumHeight:maxThumbHeight];
-    
-    CGRect newFrame = CGRectMake(10, currentY, viewSize.width, viewSize.height);
-    self.imageView = [[UIImageView alloc] initWithFrame:newFrame];
-    self.imageView.image = croppedImage;
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, currentY, thumb.size.width, thumb.size.height)];
+    self.imageView.image = thumb;                  
     currentY += self.imageView.frame.size.height + 10;
     
     
@@ -283,35 +278,35 @@
     }
 }
 
-- (CGSize)getProportion:(CGSize)sizeOfScreen imageToSize:(UIImage *)theImage maximumHeight:(CGFloat)maxHeight {
-    
-    CGFloat ht = theImage.size.height;
-    CGFloat wd = theImage.size.width;
-    CGFloat maxWidth = sizeOfScreen.width - 120;
-    CGFloat newHeight = 0;
-    CGFloat newWidth = 0;
-    
-    if (ht > wd) {
-        
-        if (ht > maxHeight) {
-            newHeight = maxHeight;
-        } else {
-            newHeight = ht;
-        }
-        newWidth = newWidth * wd / ht;        
-        
-    } else {
-        if (wd > maxWidth) {
-            newWidth = maxWidth;
-        } else {
-            newWidth = wd;
-        }
-        
-        newHeight = newWidth * ht / wd;
-    }
-    
-    return CGSizeMake(newWidth, newHeight);
-}
+//- (CGSize)getProportion:(CGSize)sizeOfScreen imageToSize:(UIImage *)theImage maximumHeight:(CGFloat)maxHeight {
+//        
+//    CGFloat ht = theImage.size.height;
+//    CGFloat wd = theImage.size.width;
+//    CGFloat maxWidth = sizeOfScreen.width - 120;
+//    CGFloat newHeight = 0;
+//    CGFloat newWidth = 0;
+//    
+//    if (ht > wd) {
+//        
+//        if (ht > maxHeight) {
+//            newHeight = maxHeight;
+//        } else {
+//            newHeight = ht;
+//        }
+//        newWidth = newWidth * wd / ht;        
+//        
+//    } else {
+//        if (wd > maxWidth) {
+//            newWidth = maxWidth;
+//        } else {
+//            newWidth = wd;
+//        }
+//        
+//        newHeight = newWidth * ht / wd;
+//    }
+//    
+//    return CGSizeMake(newWidth, newHeight);
+//}
 
 
 @end

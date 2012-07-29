@@ -20,6 +20,7 @@
 
 - (NSDictionary*) photoAtIndex: (NSInteger) index;
 - (UIImage*) photoImageAtIndex: (NSInteger) index;
+- (UIImage*) thumbImageAtIndex: (NSInteger) index;
 - (BOOL) removePhotoAtIndex: (NSInteger) index;
 - (BOOL) movePhotoAtIndex:(NSInteger)fromIndex to:(NSInteger)toIndex;
 - (void) uploadPhotosInSet:(NSSet*) photoSet;

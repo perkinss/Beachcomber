@@ -27,26 +27,12 @@
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
     if ( ![fileManager fileExistsAtPath:plistPath] ) {
+        //only need to do this for the demo, and for testing the views without camera, as with the Simulator.
         if ([self.photoData count] == 0) {
             NSMutableDictionary *entry;
             entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
-            [entry setObject:@"placeholder" forKey:@"comment"];
-            [entry setObject:@"Wreckage" forKey:@"category"];
-            [entry setObject:@"Concrete" forKey:@"composition"];
-            
-            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
-            [entry setObject:@"placeholder" forKey:@"comment"];
-            [entry setObject:@"Animal" forKey:@"category"];
-            [entry setObject:@"Mixed/Other" forKey:@"composition"];
-            
-            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
-            [entry setObject:@"placeholder" forKey:@"comment"];
-            [entry setObject:@"Animal" forKey:@"category"];
-            [entry setObject:@"Mixed/Other" forKey:@"composition"];
-            
-            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"] withLocation:nil];
-            [entry setObject:@"placeholder" forKey:@"comment"];
-            [entry setObject:@"Wreckage" forKey:@"category"];
+            [entry setObject:@"comment" forKey:@"comment"];
+            [entry setObject:@"Building Material" forKey:@"category"];
             [entry setObject:@"Concrete" forKey:@"composition"];
         }
     }

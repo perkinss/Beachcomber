@@ -120,7 +120,7 @@
     NSDictionary *photoData =  (NSDictionary*) [photos photoAtIndex:indexPath.row];
     cell.textLabel.text = [photoData objectForKey:@"category"];
     cell.detailTextLabel.text = [photoData objectForKey:@"comment"];
-    cell.imageView.image = [self getCroppedImageFromImage:[self.photos photoImageAtIndex:indexPath.row]];
+    cell.imageView.image = [photos thumbImageAtIndex:indexPath.row];
     
     return cell;
 }
@@ -128,28 +128,28 @@
 /*
  * Retrieves named image, and crops from center point of image to preserve 3:4 aspect ratio.
  */
-- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage {
-    int imgWidth = uncroppedImage.size.width;
-    int imgHeight = uncroppedImage.size.height;
-    int cropHeight, cropWidth, cropX, cropY;
-    if (3 * imgWidth > 4 * imgHeight) {
-        cropHeight = imgHeight;
-        cropWidth = 4 * imgHeight / 3;
-        cropY = 0;
-        cropX = (imgWidth - cropWidth) / 2;
-    }
-    else {
-        cropWidth = imgWidth;
-        cropHeight = 3 * imgWidth / 4;
-        cropX = 0;
-        cropY = (imgHeight - cropHeight) / 2;
-    }
-    CGRect cropRect = CGRectMake(cropX, cropY, cropWidth, cropHeight);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([uncroppedImage CGImage], cropRect);
-    UIImage* result = [UIImage imageWithCGImage:imageRef];
-    CGImageRelease(imageRef);
-    return result;
-}
+//- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage {
+//    int imgWidth = uncroppedImage.size.width;
+//    int imgHeight = uncroppedImage.size.height;
+//    int cropHeight, cropWidth, cropX, cropY;
+//    if (3 * imgWidth > 4 * imgHeight) {
+//        cropHeight = imgHeight;
+//        cropWidth = 4 * imgHeight / 3;
+//        cropY = 0;
+//        cropX = (imgWidth - cropWidth) / 2;
+//    }
+//    else {
+//        cropWidth = imgWidth;
+//        cropHeight = 3 * imgWidth / 4;
+//        cropX = 0;
+//        cropY = (imgHeight - cropHeight) / 2;
+//    }
+//    CGRect cropRect = CGRectMake(cropX, cropY, cropWidth, cropHeight);
+//    CGImageRef imageRef = CGImageCreateWithImageInRect([uncroppedImage CGImage], cropRect);
+//    UIImage* result = [UIImage imageWithCGImage:imageRef];
+//    CGImageRelease(imageRef);
+//    return result;
+//}
 
 /*
 // Override to support conditional editing of the table view.
@@ -200,6 +200,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO: change this so it doesn't create a new UIViewController each time?
+    // ...leading to possible memory leak... should check with the tools to see whether it gets released.
     UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
     PhotoViewController *photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
 
@@ -213,11 +214,11 @@
  *
  */
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    
     NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
-    UIImage* imageToShow = [self getCroppedImageFromImage:[self.photos photoImageAtIndex:indexPath.row]];
-    PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:imageToShow entry:photoData];
-    
-    
+    NSString* fileName = [photoData objectForKey:@"thumbnail"];
+    UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:fileName];
+    PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:thumb entry:photoData];
     [self.navigationController pushViewController:photoDetailViewController animated:YES];
 }
 

@@ -112,7 +112,7 @@
             
             // Hides the controls for moving & scaling pictures, or for
             // trimming movies. To instead show the controls, use YES.
-            cameraUI.allowsEditing = YES;
+            cameraUI.allowsEditing = NO;
             
             cameraUI.delegate = self;
             
@@ -143,13 +143,8 @@
 }
 
 - (void) imagePickerController: (UIImagePickerController *) picker didFinishPickingMediaWithInfo: (NSDictionary *) info {
-    
-    // TODO: check that media type is image
-    //NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-    //if (CFStringCompare ((__bridge CFStringRef) mediaType, kUTTypeImage, 0)
-    //    == kCFCompareEqualTo) {
-        
-    //}
+    //issue # 16: Use button is slow to return to this point.  I thought it was our addPhoto but maybe it's my iPhone :)
+    [self dismissModalViewControllerAnimated: YES];
     
     UIImage* editedImage = (UIImage *) [info objectForKey: UIImagePickerControllerEditedImage];
     UIImage* originalImage = (UIImage *) [info objectForKey: UIImagePickerControllerOriginalImage];
@@ -158,12 +153,12 @@
         imageToSave = editedImage;
     } else {
         imageToSave = originalImage;
-    }
-    
-    [self dismissModalViewControllerAnimated: YES];
+    }    
     
     NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave withLocation: self.currentLocation];
-    PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:imageToSave entry:newEntry];
+    NSString* thumbName = [newEntry objectForKey:@"thumbnail"];
+    UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:thumbName];
+    PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:thumb entry:newEntry];
     [self.navigationController pushViewController:detailView animated:YES];
 }
 

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PhotoDetailViewController : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource> {
-    UIImage *croppedImage;
+    UIImage *thumb;
     UIImageView *imageView;
     UITextField *commentField;
     UITextField *categoryField;
@@ -28,7 +28,7 @@
     
 }
 
-@property (nonatomic, retain) UIImage *croppedImage;
+@property (nonatomic, retain) UIImage *thumb;
 @property (nonatomic, retain) UIImageView *imageView;
 @property (nonatomic, retain) UITextField *commentField;
 @property (nonatomic, retain) UITextField *categoryField;

@@ -17,7 +17,7 @@
 @property (nonatomic, retain) PhotoData *photos;
 
 - (id)initWithPhotoData:(PhotoData*) photoData;
-- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;
+//- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;
 
 
 @end

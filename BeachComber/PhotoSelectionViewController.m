@@ -116,7 +116,7 @@
     NSDictionary *photoData =  (NSDictionary*) [self.photos photoAtIndex:indexPath.row];
     cell.textLabel.text = [photoData objectForKey:@"category"];
     cell.detailTextLabel.text = [photoData objectForKey:@"comment"];
-    cell.imageView.image = [self getCroppedImageFromImage:[self.photos photoImageAtIndex:indexPath.row]];
+    cell.imageView.image = [self.photos thumbImageAtIndex:indexPath.row];
     return cell;
 }
 
