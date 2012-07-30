@@ -92,14 +92,10 @@
     
     NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];    
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *filename;
-    NSString *thumbnail;
-    
-    //fileName: docDir/deviceid_photoNumber.png or thumb.png
-    filename = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"png"];
-    thumbnail = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"thumb.png"];
-    
-    //NSString *pngFilePath = [NSString stringWithFormat:@"%@/test.png",docDir];
+        
+    //fileName: docDir/deviceid_photoNumber.png or .thumb.png
+    NSString *filename = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"png"];
+    NSString *thumbnail = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"thumb.png"];
 	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
     //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written.
     [data writeToFile:filename atomically:NO];    
@@ -175,47 +171,8 @@
             CGImageSourceCopyProperties(imageSource, options);
             CGFloat ascale = 0.5;
             thumb = [UIImage imageWithCGImage:thumbRef scale:ascale orientation:imageOrientation];
-            //+ (UIImage *)imageWithCGImage:(CGImageRef)imageRef scale:(CGFloat)scale orientation:(UIImageOrientation)orientation
-            
-/*          // log section if needed
-            UIImageOrientation thumbOrientation = thumb.imageOrientation;
-            switch (thumbOrientation) {
-                case UIImageOrientationUp:
-                    NSLog(@"Thumb up");
-                    break;
-                case UIImageOrientationDown:
-                    NSLog(@"Thumb down");
-                    break;
-                case UIImageOrientationLeft:
-                    NSLog(@"Thumb left");
-                    break;
-                    
-                default:
-                    NSLog(@"Thumb must be right");
-                    break;
-            } 
-            switch (imageOrientation) {
-                case UIImageOrientationUp:
-                    NSLog(@"Image up");
-                    break;
-                case UIImageOrientationDown:
-                    NSLog(@"Image down");
-                    break;
-                case UIImageOrientationLeft:
-                    NSLog(@"Image left");
-                    break;
-                    
-                default:
-                    NSLog(@"Image must be right");
-                    break;
-            }
- */
                 
         }
- //Only use this if we are not doing ARC:           
-//        CFRelease(imageSource);
-//        CFRelease(thumbRef);
-//        CFRelease(options);
     } 
     return thumb;
 }
