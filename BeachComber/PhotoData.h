@@ -13,9 +13,12 @@
 }
 
 @property (nonatomic, retain) NSMutableArray *photos;
+@property (nonatomic) NSInteger photoNumber;
+@property (nonatomic, retain) NSString *deviceid;
 
 - (void) saveData;
 - (NSInteger) count;
+- (NSString *) newFilename;
 - (NSMutableDictionary* ) addPhoto:(UIImage*) image withLocation:(CLLocation*)location;
 
 - (NSDictionary*) photoAtIndex: (NSInteger) index;

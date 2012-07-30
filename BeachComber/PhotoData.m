@@ -16,15 +16,19 @@
 @implementation PhotoData
 
 @synthesize photos;
+@synthesize photoNumber = _photoNumber;
+@synthesize deviceid = _deviceid;
 
 - (id)init {
     self = [super init];
     if (self) {
+
+        
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSError *fileError = [[NSError alloc] init];
         NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
-      
+       
         if ([fileManager fileExistsAtPath:plistPath]) {
             
             self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
@@ -37,8 +41,10 @@
             }
         } else {
             self.photos = [[NSMutableArray alloc] init];
+            self.photoNumber = 0;
+            UIDevice *device = [UIDevice currentDevice];
+            self.deviceid = device.uniqueIdentifier;
         }
-        
     }
     return self;
 }
@@ -83,34 +89,27 @@
 }
 
 - (NSMutableDictionary* ) addPhoto:(UIImage*) image withLocation:(CLLocation*)location {
-    NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableDictionary *newPhoto = [[NSMutableDictionary alloc] init];    
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSArray *existingFiles = [fileManager contentsOfDirectoryAtPath:docDir error:nil];
-    NSString *uniqueFilename;
-    NSString *uniqueThumbname;
-    do {
-        CFUUIDRef newUniqueId = CFUUIDCreate(kCFAllocatorDefault);
-        CFStringRef newUniqueIdString = CFUUIDCreateString(kCFAllocatorDefault, newUniqueId);
-        
-        uniqueFilename = [[docDir stringByAppendingPathComponent:(__bridge NSString *)newUniqueIdString] stringByAppendingPathExtension: @"png"];
-        uniqueThumbname = [[docDir stringByAppendingPathComponent:(__bridge NSString *)newUniqueIdString] stringByAppendingPathExtension: @"thumb.png"];
-        CFRelease(newUniqueId);
-        CFRelease(newUniqueIdString);
-    } while ([existingFiles containsObject:uniqueFilename]);
+    NSString *filename;
+    NSString *thumbnail;
+    
+    //fileName: docDir/deviceid_photoNumber.png or thumb.png
+    filename = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"png"];
+    thumbnail = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"thumb.png"];
     
     //NSString *pngFilePath = [NSString stringWithFormat:@"%@/test.png",docDir];
 	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
-    [data writeToFile:uniqueFilename atomically:YES];
+    //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written.
+    [data writeToFile:filename atomically:NO];    
     
-    NSURL *fileURL = [NSURL fileURLWithPath:uniqueFilename];    
-    UIImage *thumb = [self makeThumb:image imageURL:fileURL];
+    UIImage *thumb = [self makeThumb:image imageData:(__bridge CFDataRef) data];
     NSData *thumbdata = [NSData dataWithData:UIImagePNGRepresentation(thumb)];
-    [thumbdata writeToFile:uniqueThumbname atomically:YES];
+    [thumbdata writeToFile:thumbnail atomically:NO];
     
-    [newPhoto setObject: uniqueThumbname forKey:@"thumbnail"];
-    [newPhoto setObject: uniqueFilename forKey:@"imageFile"];
+    [newPhoto setObject: thumbnail forKey:@"thumbnail"];
+    [newPhoto setObject: filename forKey:@"imageFile"];
     [newPhoto setObject: @"" forKey:@"comment"];
     [newPhoto setObject: @"" forKey:@"category"];
     [newPhoto setObject: @"" forKey:@"composition"];
@@ -158,19 +157,19 @@
     NSString* uid = pasteboard.string;
 }
 
-- (UIImage *) makeThumb: (UIImage *)theImage imageURL:(NSURL *)atTheURL {
-    
- 
-    CGImageSourceRef imageSource = CGImageSourceCreateWithURL((__bridge CFURLRef)atTheURL, NULL);
+- (UIImage *) makeThumb: (UIImage *)theImage imageData: (CFDataRef)theImageData {
+   
+    NSNumber *pixelSize = [NSNumber numberWithInteger:(NSInteger)120];
+    CFDictionaryRef options = (__bridge CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
+                                                         (id)kCFBooleanFalse, (id)kCGImageSourceCreateThumbnailWithTransform, 
+                                                         (id)kCFBooleanTrue, (id)kCGImageSourceCreateThumbnailFromImageIfAbsent, 
+                                                         (id)pixelSize, (id)kCGImageSourceThumbnailMaxPixelSize, nil];
+
+    CGImageSourceRef imageSource = CGImageSourceCreateWithData(theImageData, options);
     CGImageRef thumbRef;
     UIImage* thumb = nil;
     UIImageOrientation imageOrientation = theImage.imageOrientation;
     if (imageSource) {
-        NSNumber *pixelSize = [NSNumber numberWithInteger:(NSInteger)120];
-        CFDictionaryRef options = (__bridge CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
-                                                             (id)kCFBooleanFalse, (id)kCGImageSourceCreateThumbnailWithTransform, 
-                                                             (id)kCFBooleanTrue, (id)kCGImageSourceCreateThumbnailFromImageIfAbsent, 
-                                                             (id)pixelSize, (id)kCGImageSourceThumbnailMaxPixelSize, nil];
         thumbRef = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options);
         if (thumbRef) {
             CGImageSourceCopyProperties(imageSource, options);
@@ -219,6 +218,14 @@
 //        CFRelease(options);
     } 
     return thumb;
+}
+
+- (NSString *)newFilename {
+    
+    NSString *nameString = [[NSString alloc] init];
+    _photoNumber++;
+    nameString = [NSString stringWithFormat:@"%@_%05d",_deviceid,_photoNumber];
+    return nameString;
 }
 
 @end

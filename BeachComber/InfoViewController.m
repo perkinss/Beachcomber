@@ -18,6 +18,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        
+        [self.view sizeToFit];
            }
     return self;
 }
