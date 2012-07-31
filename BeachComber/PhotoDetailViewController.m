@@ -54,12 +54,11 @@
     
     CGRect fullScreen = [[UIScreen mainScreen] applicationFrame];
     UIScrollView* scrollView = [[UIScrollView alloc] init];
-    NSInteger currentY = 10;
+    NSInteger currentY = margin;
     
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageX, currentY, thumb.size.width, thumb.size.height)];
     self.imageView.image = thumb;                  
-    currentY += self.imageView.frame.size.height + 10;
-    
+    currentY += self.imageView.frame.size.height + margin;
     
     self.categoryPicker = [[UIPickerView alloc] initWithFrame:CGRectMake(0,40,0,0)];
     self.categoryPicker.showsSelectionIndicator = YES;
@@ -192,6 +191,19 @@
 }
 
 
+- (void) changePhotoWithImage:(UIImage*) image entry:(NSMutableDictionary*) newEntry {
+    self.thumb = image;
+    self.imageView.image = self.thumb;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    int imageX = (screenRect.size.width - self.thumb.size.width)/2;
+    [self.imageView setFrame:CGRectMake(imageX, 10, self.thumb.size.width, self.thumb.size.height)];
+    
+    self.entry = newEntry;
+    self.compositionField.text = [self.entry objectForKey:@"composition"];
+    self.categoryField.text = [self.entry objectForKey:@"category"];
+    self.commentField.text = [self.entry objectForKey:@"comment"];
+}
+
 - (void) categoryPickerButtonDone {
     self.categoryField.text = [categories objectAtIndex:[self.categoryPicker selectedRowInComponent:0]];
     [self.categoryField resignFirstResponder];
@@ -200,9 +212,6 @@
     [self.categoryField resignFirstResponder];
     
 }
-
-
-
 
 
 - (void) compositionPickerButtonDone {

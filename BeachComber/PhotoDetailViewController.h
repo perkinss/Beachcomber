@@ -46,6 +46,7 @@
 @property (nonatomic) BOOL keyboardIsShown;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
+- (void) changePhotoWithImage:(UIImage*) image entry:(NSMutableDictionary*) entry;
 
 - (void) categoryPickerButtonDone;
 - (void) categoryPickerButtonCancel;

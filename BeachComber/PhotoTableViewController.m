@@ -14,13 +14,15 @@
 
 @implementation PhotoTableViewController
 
-@synthesize photos;
+@synthesize photos, photoViewController, detailViewController;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
     self = [super init];
     if (self) {
         self.photos = photoData;
+        self.photoViewController = nil;
+        self.detailViewController = nil;
     }
     return self;
 }
@@ -202,10 +204,13 @@
     // TODO: change this so it doesn't create a new UIViewController each time?
     // ...leading to possible memory leak... should check with the tools to see whether it gets released.
     UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
-    PhotoViewController *photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
-
-     [self.navigationController pushViewController:photoViewController animated:YES];
-    
+    if (self.photoViewController == nil) {
+        self.photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
+    }
+    else {
+        [self.photoViewController changePhoto:imageToShow];
+    }
+    [self.navigationController pushViewController:self.photoViewController animated:YES];
 }
 
 /*
@@ -218,8 +223,13 @@
     NSMutableDictionary *photoData =  (NSMutableDictionary*) [photos photoAtIndex:indexPath.row];
     NSString* fileName = [photoData objectForKey:@"thumbnail"];
     UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:fileName];
-    PhotoDetailViewController *photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:thumb entry:photoData];
-    [self.navigationController pushViewController:photoDetailViewController animated:YES];
+    if (self.detailViewController == nil) {
+        self.detailViewController = [[PhotoDetailViewController alloc] initWithImage:thumb entry:photoData];
+    }
+    else {
+        [self.detailViewController changePhotoWithImage:thumb entry:photoData];
+    }
+    [self.navigationController pushViewController:self.detailViewController animated:YES];
 }
 
 

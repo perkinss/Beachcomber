@@ -18,6 +18,7 @@
 @implementation BaseViewController
 @synthesize photos, locationManager, currentLocation;
 
+@synthesize photoTableViewController, photoSelectionViewController, photoDetailViewController, infoViewController;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -28,6 +29,11 @@
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
         [self.locationManager startMonitoringSignificantLocationChanges];
+        
+        photoTableViewController = nil;
+        photoSelectionViewController = nil;
+        photoDetailViewController = nil;
+        infoViewController = nil;
     }
     return self;
 }
@@ -147,17 +153,23 @@
 }
 
 - (void) dataButton {
-    PhotoTableViewController *tableViewController = [[PhotoTableViewController alloc] initWithPhotoData:self.photos];
-    [self.navigationController pushViewController:tableViewController animated:YES];
+    if (photoTableViewController == nil) {
+        photoTableViewController = [[PhotoTableViewController alloc] initWithPhotoData:self.photos];
+    }
+    [self.navigationController pushViewController:photoTableViewController animated:YES];
 }
 
 - (void) uploadButton {
-    PhotoSelectionViewController *selectionViewController = [[PhotoSelectionViewController alloc] initWithPhotoData:self.photos];
-    [self.navigationController pushViewController:selectionViewController animated:YES];
+    if (photoSelectionViewController == nil) {
+        photoSelectionViewController = [[PhotoSelectionViewController alloc] initWithPhotoData:self.photos];
+    }
+    [self.navigationController pushViewController:photoSelectionViewController animated:YES];
 }
 - (void) infoButton {
-    InfoViewController *infoViewController = [[InfoViewController alloc] init];
-    infoViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    if (infoViewController == nil) {
+        infoViewController = [[InfoViewController alloc] init];
+        infoViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    }
     [self.navigationController pushViewController:infoViewController animated:YES];
 }
 
@@ -182,8 +194,13 @@
     NSMutableDictionary *newEntry = [self.photos addPhoto:imageToSave withLocation: self.currentLocation];
     NSString* thumbName = [newEntry objectForKey:@"thumbnail"];
     UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:thumbName];
-    PhotoDetailViewController *detailView = [[PhotoDetailViewController alloc] initWithImage:thumb entry:newEntry];
-    [self.navigationController pushViewController:detailView animated:YES];
+    if (self.photoDetailViewController == nil) {
+        self.photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:thumb entry:newEntry];
+    }
+    else {
+        [self.photoDetailViewController changePhotoWithImage:thumb entry:newEntry];
+    }
+    [self.navigationController pushViewController:self.photoDetailViewController animated:YES];
 }
 
 
