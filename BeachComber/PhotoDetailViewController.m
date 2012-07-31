@@ -43,11 +43,20 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    int fieldWidth = 300;
+    int fieldHeight = 30;
+    int labelHeight = 30;
+    int commentHeight = 70;
+    int margin = 10;
+    int fieldX = (screenRect.size.width - fieldWidth)/2;
+    int imageX = (screenRect.size.width - thumb.size.width)/2;
+    
     CGRect fullScreen = [[UIScreen mainScreen] applicationFrame];
-    UIScrollView* scrollView = [[UIScrollView alloc] initWithFrame:fullScreen];
+    UIScrollView* scrollView = [[UIScrollView alloc] init];
     NSInteger currentY = 10;
     
-    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, currentY, thumb.size.width, thumb.size.height)];
+    self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(imageX, currentY, thumb.size.width, thumb.size.height)];
     self.imageView.image = thumb;                  
     currentY += self.imageView.frame.size.height + 10;
     
@@ -64,11 +73,11 @@
     [categoryItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(categoryPickerButtonCancel)]];
     [categoryToolbar setItems:categoryItems animated:NO];
     
-    UILabel* categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
+    UILabel* categoryLabel = [[UILabel alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, labelHeight)];
     categoryLabel.text = @"Category:";
-    currentY += categoryLabel.frame.size.height + 10;                       
-    self.categoryField = [[UITextField alloc] initWithFrame:CGRectMake(10, currentY, 300, 40)];
-    currentY += self.categoryField.frame.size.height + 30;     
+    currentY += categoryLabel.frame.size.height + margin;                       
+    self.categoryField = [[UITextField alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, fieldHeight)];
+    currentY += self.categoryField.frame.size.height + margin * 2;     
     self.categoryField.borderStyle = UITextBorderStyleRoundedRect;
     self.categoryField.inputView = self.categoryPicker;
     self.categoryField.inputAccessoryView = categoryToolbar;
@@ -87,27 +96,27 @@
     [compositionItems addObject:[[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(compositionPickerButtonCancel)]];
     [compositionToolbar setItems:compositionItems animated:NO];
     
-    UILabel* compositionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
+    UILabel* compositionLabel = [[UILabel alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, labelHeight)];
     compositionLabel.text = @"Composition:";
-    currentY += compositionLabel.frame.size.height + 10;                       
-    self.compositionField = [[UITextField alloc] initWithFrame:CGRectMake(10, currentY, 300, 40)];
-    currentY += self.compositionField.frame.size.height + 30;     
+    currentY += compositionLabel.frame.size.height + margin;                       
+    self.compositionField = [[UITextField alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, fieldHeight)];
+    currentY += self.compositionField.frame.size.height + margin * 2;     
     self.compositionField.borderStyle = UITextBorderStyleRoundedRect;
     self.compositionField.inputView = self.compositionPicker;
     self.compositionField.inputAccessoryView = compositionToolbar;
     self.compositionField.text = [self.entry objectForKey:@"composition"];
     self.compositionField.placeholder = @"What is it made of? ...";
     
-    UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, currentY, 300, 30)];
+    UILabel* commentLabel = [[UILabel alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, labelHeight)];
     commentLabel.text = @"Comments:";
-    currentY += commentLabel.frame.size.height + 10;    
-    self.commentField = [[UITextField alloc] initWithFrame:CGRectMake(10, currentY, 300, 40)];
+    currentY += commentLabel.frame.size.height + margin;    
+    self.commentField = [[UITextField alloc] initWithFrame:CGRectMake(fieldX, currentY, fieldWidth, commentHeight)];
     //self.commentField.font = [UIFont fontWithName:@"Helvetica" size:13.0];
     self.commentField.borderStyle =  UITextBorderStyleRoundedRect;
     self.commentField.text = [self.entry objectForKey:@"comment"];
     self.commentField.delegate = self;
     self.commentField.placeholder = @"Enter other details ... ";
-    currentY += self.commentField.frame.size.height + 10;
+    currentY += self.commentField.frame.size.height + margin;
     scrollView.contentSize = CGSizeMake(fullScreen.size.width, currentY);
     
     [scrollView addSubview:self.imageView];

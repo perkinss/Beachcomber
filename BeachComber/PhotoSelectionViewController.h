@@ -13,10 +13,13 @@
     
     PhotoData *photos;
     NSMutableSet *selection;
+    
+    UIBarButtonItem *uploadButton;
 }
 
 @property (nonatomic, retain) PhotoData *photos;
 @property (nonatomic, retain) NSMutableSet *selection;
+@property (nonatomic, retain) UIBarButtonItem *uploadButton;
 
 - (id)initWithPhotoData:(PhotoData*) photoData;
 - (void)uploadEvent;

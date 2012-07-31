@@ -12,7 +12,7 @@
 
 @implementation PhotoSelectionViewController
 
-@synthesize photos, selection;
+@synthesize photos, selection, uploadButton;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -37,8 +37,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UIBarButtonItem *uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleDone target:self action:@selector(uploadEvent)];
-    [[self navigationItem] setRightBarButtonItem: uploadButton];  
+    self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleDone target:self action:@selector(uploadEvent)];
+    [[self navigationItem] setRightBarButtonItem: self.uploadButton];  
     [[self navigationItem] setTitle:@"Select photos"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -203,8 +203,16 @@
 }
 
 - (void)uploadEvent {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    [self.photos uploadPhotosInSet:self.selection withObserver:self];
+    if ([self.selection count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No photos selected" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [self.photos uploadPhotosInSet:self.selection withObserver:self];
+        [self.uploadButton setEnabled:NO];
+        
+    }
 }
 
 - (void) _sendDidStopWithStatus: (NSString*) status{
@@ -228,6 +236,7 @@
     }
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
     [alert show];
+    [self.uploadButton setEnabled:YES];
 }
 
 @end
