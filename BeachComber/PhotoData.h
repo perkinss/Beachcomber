@@ -10,6 +10,7 @@
 
 @interface PhotoData : NSObject {
     NSMutableArray *photos;
+    NSInteger photoNumber;
 }
 
 @property (nonatomic, retain) NSMutableArray *photos;

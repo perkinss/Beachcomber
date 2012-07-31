@@ -31,10 +31,13 @@
        
         if ([fileManager fileExistsAtPath:plistPath]) {
             
-            self.photos = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
-                                                                    options:NSPropertyListMutableContainers
-                                                                     format:NULL
-                                                                      error:&fileError];
+            NSDictionary *appData = [NSPropertyListSerialization propertyListWithData:[NSData dataWithContentsOfFile:plistPath] 
+                                                                              options:NSPropertyListMutableContainers
+                                                                               format:NULL
+                                                                                error:&fileError];
+            self.photos = [appData objectForKey:@"photos"];
+            self.photoNumber = [[appData objectForKey:@"photoNumber"] intValue];
+            self.deviceid = [appData objectForKey:@"deviceid"];
             if([fileError localizedFailureReason] != nil) {
                 NSString *err = [fileError localizedFailureReason]; 
                 NSLog(@"Error: %@",err);
@@ -94,8 +97,10 @@
     NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         
     //fileName: docDir/deviceid_photoNumber.png or .thumb.png
-    NSString *filename = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"png"];
-    NSString *thumbnail = [[docDir stringByAppendingPathComponent:[self newFilename]] stringByAppendingPathExtension: @"thumb.png"];
+    NSString *baseName = [self newFilename];
+    NSString *thumbName = [baseName stringByAppendingPathExtension: @"thumb"];
+    NSString *filename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"png"];
+    NSString *thumbnail = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.png"];
 	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
     //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written.
     [data writeToFile:filename atomically:NO];    
@@ -128,9 +133,10 @@
 
 - (void) saveData {
    
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
-    [self.photos writeToFile:plistPath atomically:YES];
+    NSNumber *photonum = [NSNumber numberWithInteger:_photoNumber];
+    NSDictionary *appData = [NSDictionary dictionaryWithObjectsAndKeys:self.photos, @"photos", photonum, @"photoNumber", _deviceid, @"deviceid", nil];      NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [[docDir stringByAppendingPathComponent:@"photos" ] stringByAppendingPathExtension: @"plist"];
+    [appData writeToFile:plistPath atomically:YES];
 }
 
 - (UIImage*) photoImageAtIndex: (NSInteger) index {

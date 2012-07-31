@@ -34,20 +34,6 @@
     
     self.photoData = [[PhotoData alloc] init];
     
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
-    if ( ![fileManager fileExistsAtPath:plistPath] ) {
-        //only need to do this for the demo, and for testing the views without camera, as with the Simulator.
-        if ([self.photoData count] == 0) {
-            NSMutableDictionary *entry;
-            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
-            [entry setObject:@"comment" forKey:@"comment"];
-            [entry setObject:@"Building Material" forKey:@"category"];
-            [entry setObject:@"Concrete" forKey:@"composition"];
-        }
-    }
-    
     baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController: self.baseController];
@@ -69,6 +55,7 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
         [self.photoData saveData];
+
     /*
      Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
