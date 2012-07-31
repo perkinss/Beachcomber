@@ -189,14 +189,7 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+{    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell setSelected:NO];
     if ([selection containsObject:[NSNumber numberWithInt:indexPath.row]]) {
@@ -210,7 +203,31 @@
 }
 
 - (void)uploadEvent {
-    [self.photos uploadPhotosInSet:self.selection];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self.photos uploadPhotosInSet:self.selection withObserver:self];
+}
+
+- (void) _sendDidStopWithStatus: (NSString*) status{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSString* alertTitle = @"";
+    NSString* alertMessage = @"";
+    
+    if (status == nil) {
+        alertMessage = @"Upload completed";
+        [self.selection removeAllObjects];
+        for (int section = 0, sectionCount = self.tableView.numberOfSections; section < sectionCount; ++section) {
+            for (int row = 0, rowCount = [self.tableView numberOfRowsInSection:section]; row < rowCount; ++row) {
+                UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
+    }
+    else {
+        alertTitle = @"Error";
+        alertMessage = status;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alert show];
 }
 
 @end

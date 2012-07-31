@@ -22,4 +22,6 @@
 - (void)uploadEvent;
 - (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;
 
+- (void) _sendDidStopWithStatus: (NSString*) status;
+
 @end

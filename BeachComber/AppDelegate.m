@@ -17,22 +17,43 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // store unique app identifier on a persistent pasteboard
-    UIPasteboard *pasteboard = [UIPasteboard pasteboardWithName:@"beachcomber" create:YES];
-    pasteboard.persistent = YES;
-    if (pasteboard.string == nil) {
-        // id has not been set yet, so create it
-        CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
-        NSString *uuidString = (__bridge NSString *)CFUUIDCreateString(NULL,uuidRef);
-        CFRelease(uuidRef);
-        pasteboard.string = uuidString;
-    }
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
     self.photoData = [[PhotoData alloc] init];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *docDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *plistPath = [NSString stringWithFormat:@"%@/photos.plist", docDir ];
+    if ( ![fileManager fileExistsAtPath:plistPath] ) {
+        //only need to do this for the demo, and for testing the views without camera, as with the Simulator.
+        if ([self.photoData count] == 0) {
+            NSMutableDictionary *entry;
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image1.png"] withLocation:nil];
+            [entry setObject:@"comment" forKey:@"comment"];
+            [entry setObject:@"Building Material" forKey:@"category"];
+            [entry setObject:@"Concrete" forKey:@"composition"];
+            
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
+            [entry setObject:@"comment" forKey:@"comment"];
+            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Other/Mixed" forKey:@"composition"];
+            
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
+            [entry setObject:@"comment" forKey:@"comment"];
+            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Other/Mixed" forKey:@"composition"];
+            
+            
+            entry = [self.photoData addPhoto:[UIImage imageNamed:@"image4.png"] withLocation:nil];
+            [entry setObject:@"comment" forKey:@"comment"];
+            [entry setObject:@"Building Material" forKey:@"category"];
+            [entry setObject:@"Concrete" forKey:@"composition"];
+        }
+    }
     
     baseController = [[BaseViewController alloc] initWithPhotoData:photoData];
     

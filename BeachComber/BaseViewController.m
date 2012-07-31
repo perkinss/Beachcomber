@@ -72,7 +72,7 @@
     tableButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
     currentY += buttonHeight + margin;
     [tableButton addTarget:self action:@selector(dataButton) forControlEvents:UIControlEventTouchDown];
-    [tableButton setTitle:@"View images" forState:UIControlStateNormal];
+    [tableButton setTitle:@"View and edit images" forState:UIControlStateNormal];
     
     UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     uploadButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);

@@ -35,6 +35,7 @@
 		C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A5592015BCA12C0070FBA7 /* BaseViewController.m */; };
 		C8CEE53915C3796800EEC4ED /* PhotoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEE53815C3796800EEC4ED /* PhotoSelectionViewController.m */; };
 		C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */; };
+		C8FBB63715C7449C006BFB3C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBB63615C7449C006BFB3C /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		C8CEE53715C3796800EEC4ED /* PhotoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSelectionViewController.h; sourceTree = "<group>"; };
 		C8CEE53815C3796800EEC4ED /* PhotoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSelectionViewController.m; sourceTree = "<group>"; };
 		C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		C8FBB63615C7449C006BFB3C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8FBB63715C7449C006BFB3C /* CFNetwork.framework in Frameworks */,
 				68CD875B15C3A519006AF69C /* ImageIO.framework in Frameworks */,
 				088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */,
 				C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */,
@@ -140,6 +143,7 @@
 		C833E19715B7D94500EE636E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8FBB63615C7449C006BFB3C /* CFNetwork.framework */,
 				68CD875A15C3A519006AF69C /* ImageIO.framework */,
 				088E99BB15C0BEED00823D7A /* CoreImage.framework */,
 				C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */,
