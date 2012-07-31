@@ -11,7 +11,7 @@
 
 @implementation PhotoDetailViewController
 
-@synthesize thumb, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField;
+@synthesize thumb, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField, mandatoryFields;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par
 {
@@ -25,6 +25,7 @@
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
         self.entry = entry_par;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveEvent)];
+        self.mandatoryFields = NO;
     }
     return self;
 }
@@ -225,10 +226,21 @@
 
 
 - (void) saveEvent {
-    [self.entry setObject:self.commentField.text forKey:@"comment"];
-    [self.entry setObject:self.categoryField.text forKey:@"category"];
-    [self.entry setObject:self.compositionField.text forKey:@"composition"];
-    [self.navigationController popViewControllerAnimated:YES];
+
+    if (mandatoryFields && self.categoryField.text == @"") {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please choose a category" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else if (mandatoryFields && self.compositionField.text == @"") {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"Please specify a composition" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        [self.entry setObject:self.commentField.text forKey:@"comment"];
+        [self.entry setObject:self.categoryField.text forKey:@"category"];
+        [self.entry setObject:self.compositionField.text forKey:@"composition"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)theTextField

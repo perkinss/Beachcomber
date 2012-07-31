@@ -25,6 +25,7 @@
     NSMutableDictionary *entry;
     
     BOOL keyboardIsShown;
+    BOOL mandatoryFields;
     
 }
 
@@ -44,6 +45,7 @@
 @property (nonatomic, retain) UITextField *activeField;
 
 @property (nonatomic) BOOL keyboardIsShown;
+@property (nonatomic) BOOL mandatoryFields;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
 - (void) changePhotoWithImage:(UIImage*) image entry:(NSMutableDictionary*) entry;
