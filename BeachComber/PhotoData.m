@@ -77,6 +77,7 @@
     }
     NSMutableDictionary *entry = [self.photos objectAtIndex: index];
     NSString *imageFile = [entry objectForKey:@"imageFile"];
+    NSString *thumb = [entry objectForKey:@"thumbnail"];
     
     NSFileManager *fileMgr = [[NSFileManager alloc] init];
     NSError *error = nil;
@@ -85,6 +86,12 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not delete image" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
+    [fileMgr removeItemAtPath:thumb error:&error];
+    if (error != nil) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not delete thumb" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+
     
     [self.photos removeObjectAtIndex:index];
     return YES;
@@ -113,14 +120,16 @@
     //fileName: docDir/deviceid_photoNumber.png or .thumb.png
     NSString *baseName = [self newFilename];
     NSString *thumbName = [baseName stringByAppendingPathExtension: @"thumb"];
-    NSString *filename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"png"];
-    NSString *thumbnail = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.png"];
-	NSData *data = [NSData dataWithData:UIImagePNGRepresentation(image)];
+    NSString *filename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"jpg"];
+    NSString *thumbnail = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.jpg"];
+    CGFloat compressionQuality = 0.5;
+	NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 0)];
     //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written.
     [data writeToFile:filename atomically:NO];    
     
     UIImage *thumb = [self makeThumb:image imageData:(__bridge CFDataRef) data];
-    NSData *thumbdata = [NSData dataWithData:UIImagePNGRepresentation(thumb)];
+    compressionQuality = 0.5;
+    NSData *thumbdata = [NSData dataWithData:UIImageJPEGRepresentation(thumb, compressionQuality)];
     [thumbdata writeToFile:thumbnail atomically:NO];
     
     [newPhoto setObject: thumbnail forKey:@"thumbnail"];
@@ -243,7 +252,7 @@
     
     assert(imageFilePath != nil);
     assert([[NSFileManager defaultManager] fileExistsAtPath:imageFilePath]);
-    assert( [imageFilePath.pathExtension isEqual:@"png"]);
+    assert( [imageFilePath.pathExtension isEqual:@"jpg"]);
     
     assert(self.imageFTPStream == nil);      // don't tap send twice in a row!
     assert(self.imageInputStream == nil);         // ditto
