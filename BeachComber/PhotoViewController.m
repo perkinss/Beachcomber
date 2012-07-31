@@ -10,7 +10,7 @@
 
 @implementation PhotoViewController
 
-@synthesize imageView, image;
+@synthesize imageView, image, scrollView;
 
 - (id)initWithImage:(UIImage*)initialImage
 {
@@ -35,7 +35,7 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    UIScrollView *scrollView = [[UIScrollView alloc] init];
+    self.scrollView = [[UIScrollView alloc] init];
     self.imageView = [[UIImageView alloc] initWithImage:image];
     scrollView.contentSize = self.imageView.frame.size;
     scrollView.scrollEnabled = YES;
@@ -65,6 +65,13 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void) changePhoto:(UIImage*) newImage {
+    self.image = newImage;
+    self.imageView.image = newImage;
+    [self.imageView setFrame:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
+    self.scrollView.contentSize = self.imageView.frame.size;
 }
 
 @end

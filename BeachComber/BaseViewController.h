@@ -6,6 +6,10 @@
 //
 
 @class PhotoData;
+@class PhotoSelectionViewController;
+@class PhotoTableViewController;
+@class PhotoDetailViewController;
+@class InfoViewController;
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -13,13 +17,21 @@
     PhotoData *photos;
     CLLocationManager *locationManager;
     CLLocation *currentLocation;
+    
+    PhotoTableViewController *photoTableViewController;
+    PhotoSelectionViewController *photoSelectionViewController;
+    PhotoDetailViewController *photoDetailViewController;
+    InfoViewController *infoViewController;
 }
 
 @property (nonatomic, retain) PhotoData *photos;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, retain) CLLocation *currentLocation;
 
-
+@property (nonatomic, retain) PhotoTableViewController *photoTableViewController;
+@property (nonatomic, retain) PhotoSelectionViewController *photoSelectionViewController;
+@property (nonatomic, retain) InfoViewController *infoViewController;
+@property (nonatomic, retain) PhotoDetailViewController *photoDetailViewController;
 
 - (id)initWithPhotoData:(PhotoData*) photoData;
 
