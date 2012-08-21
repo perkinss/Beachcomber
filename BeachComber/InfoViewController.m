@@ -13,14 +13,15 @@
 @end
 
 @implementation InfoViewController 
+@synthesize scrollView = _scrollView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        [self.view sizeToFit];
-           }
+    
+    }
     return self;
 }
 
