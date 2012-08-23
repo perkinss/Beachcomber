@@ -14,6 +14,8 @@
 	<array>
 		<string>octo.png</string>
 		<string>Octoretina.png</string>
+		<string>ipadIcon.png</string>
+		<string>ipadRetinaIcon.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -23,6 +25,8 @@
 			<array>
 				<string>octo.png</string>
 				<string>Octoretina.png</string>
+				<string>ipadIcon.png</string>
+				<string>ipadRetinaIcon.png</string>
 			</array>
 		</dict>
 	</dict>
