@@ -38,13 +38,13 @@
             
             entry = [self.photoData addPhoto:[UIImage imageNamed:@"image2.png"] withLocation:nil];
             [entry setObject:@"comment" forKey:@"comment"];
-            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Other" forKey:@"category"];
             [entry setObject:@"Other/Mixed" forKey:@"composition"];
             
             
             entry = [self.photoData addPhoto:[UIImage imageNamed:@"image3.png"] withLocation:nil];
             [entry setObject:@"comment" forKey:@"comment"];
-            [entry setObject:@"Animal" forKey:@"category"];
+            [entry setObject:@"Other" forKey:@"category"];
             [entry setObject:@"Other/Mixed" forKey:@"composition"];
             
             

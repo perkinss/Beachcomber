@@ -40,6 +40,7 @@
     self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleDone target:self action:@selector(uploadEvent)];
     [[self navigationItem] setRightBarButtonItem: self.uploadButton];  
     [[self navigationItem] setTitle:@"Select photos"];
+    [self.tableView reloadData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
