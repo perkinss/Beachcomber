@@ -11,6 +11,7 @@
 		08442DC415C6E256006E7234 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08442DC215C6E256006E7234 /* InfoViewController.xib */; };
 		08442DC815C6E363006E7234 /* octo.png in Resources */ = {isa = PBXBuildFile; fileRef = 08442DC615C6E363006E7234 /* octo.png */; };
 		08442DC915C6E363006E7234 /* Octoretina.png in Resources */ = {isa = PBXBuildFile; fileRef = 08442DC715C6E363006E7234 /* Octoretina.png */; };
+		086BF92116137F5D006003E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 086BF92016137F5D006003E1 /* Default-568h@2x.png */; };
 		088E99BD15C0BEED00823D7A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 088E99BB15C0BEED00823D7A /* CoreImage.framework */; };
 		08C9FB5F15E5424500A68B3C /* ipadIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C9FB5E15E5424500A68B3C /* ipadIcon.png */; };
 		08C9FB6115E5427900A68B3C /* ipadRetinaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 08C9FB6015E5427900A68B3C /* ipadRetinaIcon.png */; };
@@ -56,6 +57,7 @@
 		08442DC215C6E256006E7234 /* InfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		08442DC615C6E363006E7234 /* octo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = octo.png; sourceTree = SOURCE_ROOT; };
 		08442DC715C6E363006E7234 /* Octoretina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Octoretina.png; sourceTree = SOURCE_ROOT; };
+		086BF92016137F5D006003E1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		088E99BA15C0BEED00823D7A /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		088E99BB15C0BEED00823D7A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		08C9FB5E15E5424500A68B3C /* ipadIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipadIcon.png; path = ../ipadIcon.png; sourceTree = "<group>"; };
@@ -72,10 +74,10 @@
 		C833E19815B7D94500EE636E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C833E19A15B7D94500EE636E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C833E19C15B7D94500EE636E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C833E1A015B7D94500EE636E /* Beachcomber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beachcomber-Info.plist"; sourceTree = "<group>"; };
+		C833E1A015B7D94500EE636E /* Beach_comber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beach_comber-Info.plist"; sourceTree = "<group>"; };
 		C833E1A215B7D94500EE636E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C833E1A415B7D94500EE636E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C833E1A615B7D94500EE636E /* Beachcomber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Beachcomber-Prefix.pch"; sourceTree = "<group>"; };
+		C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeachComber-Prefix.pch"; sourceTree = "<group>"; };
 		C833E1A715B7D94500EE636E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C833E1A815B7D94500EE636E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C833E1AF15B7D94600EE636E /* BeachComberTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeachComberTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 		C833E18915B7D94500EE636E = {
 			isa = PBXGroup;
 			children = (
+				086BF92016137F5D006003E1 /* Default-568h@2x.png */,
 				C833E19E15B7D94500EE636E /* Beachcomber */,
 				C833E1B615B7D94600EE636E /* BeachComberTests */,
 				C833E19715B7D94500EE636E /* Frameworks */,
@@ -197,10 +200,10 @@
 				C833E1D515B91DBC00EE636E /* image2.png */,
 				C833E1D615B91DBC00EE636E /* image3.png */,
 				C81BAD9315B9F9E200132A2E /* image4.png */,
-				C833E1A015B7D94500EE636E /* Beachcomber-Info.plist */,
+				C833E1A015B7D94500EE636E /* Beach_comber-Info.plist */,
 				C833E1A115B7D94500EE636E /* InfoPlist.strings */,
 				C833E1A415B7D94500EE636E /* main.m */,
-				C833E1A615B7D94500EE636E /* Beachcomber-Prefix.pch */,
+				C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				08442DC915C6E363006E7234 /* Octoretina.png in Resources */,
 				08C9FB5F15E5424500A68B3C /* ipadIcon.png in Resources */,
 				08C9FB6115E5427900A68B3C /* ipadRetinaIcon.png in Resources */,
+				086BF92116137F5D006003E1 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,7 +413,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = Beachcomber;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -429,7 +433,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = Beachcomber;
 				SDKROOT = iphoneos;
@@ -443,7 +447,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Beachcomber/Beachcomber-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/BeachComber/Beach_comber-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = Beachcomber;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -456,7 +460,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/Beachcomber/Beachcomber-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/BeachComber/Beach_comber-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = Beachcomber;
 				TARGETED_DEVICE_FAMILY = "1,2";
