@@ -131,7 +131,7 @@
             UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
             cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
             cameraUI.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-            cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+
             // Hides the controls for moving & scaling pictures, or for
             // trimming movies. To instead show the controls, use YES.
             cameraUI.allowsEditing = NO;
