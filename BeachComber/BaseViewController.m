@@ -130,11 +130,8 @@
         if ([UIImagePickerController isSourceTypeAvailable: UIImagePickerControllerSourceTypeCamera]) {
             UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
             cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
-            
-            // Displays a control that allows the user to choose picture or
-            // movie capture, if both are available:
-            cameraUI.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType: UIImagePickerControllerSourceTypeCamera];
-            
+            cameraUI.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+            cameraUI.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
             // Hides the controls for moving & scaling pictures, or for
             // trimming movies. To instead show the controls, use YES.
             cameraUI.allowsEditing = NO;
