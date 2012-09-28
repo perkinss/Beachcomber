@@ -120,20 +120,18 @@
     //fileName: docDir/deviceid_photoNumber.png or .thumb.png
     NSString *baseName = [self newFilename];
     NSString *thumbName = [baseName stringByAppendingPathExtension: @"thumb"];
-    NSString *filename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"jpg"];
-    NSString *thumbnail = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.jpg"];
-    CGFloat compressionQuality = 0.5;
+    NSString *fullFilename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"jpg"];
+    NSString *thumbFilename = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.jpg"];
 	NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 0)];
-    //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written.
-    [data writeToFile:filename atomically:NO];    
+    //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written
+    [data writeToFile:fullFilename atomically:NO];    
     
-    UIImage *thumb = [self makeThumb:image imageData:(__bridge CFDataRef) data];
-    compressionQuality = 0.5;
-    NSData *thumbdata = [NSData dataWithData:UIImageJPEGRepresentation(thumb, compressionQuality)];
-    [thumbdata writeToFile:thumbnail atomically:NO];
+    UIImage* thumb = [self makeThumb:image];
+    NSData *thumbData = [NSData dataWithData:UIImageJPEGRepresentation(thumb, 0)];
+    [thumbData writeToFile:thumbFilename atomically:NO];
     
-    [newPhoto setObject: thumbnail forKey:@"thumbnail"];
-    [newPhoto setObject: filename forKey:@"imageFile"];
+    [newPhoto setObject: thumbFilename forKey:@"thumbnail"];
+    [newPhoto setObject: fullFilename forKey:@"imageFile"];
     [newPhoto setObject: @"" forKey:@"comment"];
     [newPhoto setObject: @"" forKey:@"category"];
     [newPhoto setObject: @"" forKey:@"composition"];
@@ -179,29 +177,22 @@
 }
 
 
-
-- (UIImage *) makeThumb: (UIImage *)theImage imageData: (CFDataRef)theImageData {
-   
-    NSNumber *pixelSize = [NSNumber numberWithInteger:(NSInteger)120];
-    CFDictionaryRef options = (__bridge CFDictionaryRef)[NSDictionary dictionaryWithObjectsAndKeys:
-                                                         (id)kCFBooleanFalse, (id)kCGImageSourceCreateThumbnailWithTransform, 
-                                                         (id)kCFBooleanTrue, (id)kCGImageSourceCreateThumbnailFromImageIfAbsent, 
-                                                         (id)pixelSize, (id)kCGImageSourceThumbnailMaxPixelSize, nil];
-
-    CGImageSourceRef imageSource = CGImageSourceCreateWithData(theImageData, options);
-    CGImageRef thumbRef;
-    UIImage* thumb = nil;
-    UIImageOrientation imageOrientation = theImage.imageOrientation;
-    if (imageSource) {
-        thumbRef = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, options);
-        if (thumbRef) {
-            CGImageSourceCopyProperties(imageSource, options);
-            CGFloat ascale = 0.5;
-            thumb = [UIImage imageWithCGImage:thumbRef scale:ascale orientation:imageOrientation];
-                
-        }
-    } 
-    return thumb;
+- (UIImage*) makeThumb: (UIImage *) fullImage {
+    CGSize imageSize = [fullImage size];
+    int shortestEdge = MIN(imageSize.width, imageSize.height);
+    
+    CGRect rect = CGRectMake((imageSize.width - shortestEdge)/2, (imageSize.height - shortestEdge)/2, shortestEdge, shortestEdge);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([fullImage CGImage], rect);
+    UIImage *thumb = [UIImage imageWithCGImage:imageRef]; 
+    CGImageRelease(imageRef);
+    
+    CGSize thumbsize = CGSizeMake(180, 180);
+    UIGraphicsBeginImageContext(thumbsize);
+    [thumb drawInRect:CGRectMake(0, 0, thumbsize.width, thumbsize.height)];
+    UIImage *scaledThumb = UIGraphicsGetImageFromCurrentImageContext();    
+    UIGraphicsEndImageContext();
+    
+    return scaledThumb;
 }
 
 - (NSString *)newFilename {
