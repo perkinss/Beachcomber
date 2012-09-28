@@ -143,7 +143,7 @@
     }
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
 
-    [format setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [format setDateFormat:@"yyyyMMdd'T'HHmmss.SSS'Z'"];
     [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     NSString* dateString = [format stringFromDate:[NSDate date]];
     [newPhoto setObject:latitudeString forKey:@"latitude"];
