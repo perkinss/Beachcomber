@@ -217,9 +217,9 @@
 /* ********************** UPLOADING FUNCTIONS  **************************/
 // TODO: run uploading in separate run loop
 
-- (void) uploadPhotosInSet:(NSMutableSet*) photoSet withObserver:(id)target{
+- (void) uploadPhotosInSet:(NSArray*) photoSet withObserver:(id)target{
     self.uploadNotifyTarget = target;
-    self.uploadSet = [photoSet allObjects];
+    self.uploadSet = photoSet;
     self.uploadSetIndex = 0;
     NSInteger index = [[self.uploadSet objectAtIndex:self.uploadSetIndex] intValue];
     [self _startSendAtIndex: index];

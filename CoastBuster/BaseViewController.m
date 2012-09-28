@@ -18,7 +18,7 @@
 @implementation BaseViewController
 @synthesize photos, locationManager, currentLocation;
 
-@synthesize photoTableViewController, photoSelectionViewController, photoDetailViewController, infoViewController;
+@synthesize photoTableViewController, photoDetailViewController, infoViewController;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -31,7 +31,6 @@
         [self.locationManager startMonitoringSignificantLocationChanges];
         
         photoTableViewController = nil;
-        photoSelectionViewController = nil;
         photoDetailViewController = nil;
         infoViewController = nil;
     }
@@ -78,13 +77,7 @@
     tableButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
     currentY += buttonHeight + margin;
     [tableButton addTarget:self action:@selector(dataButton) forControlEvents:UIControlEventTouchDown];
-    [tableButton setTitle:@"View and edit images" forState:UIControlStateNormal];
-    
-    UIButton *uploadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    uploadButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
-    currentY += buttonHeight + margin;
-    [uploadButton addTarget:self action:@selector(uploadButton) forControlEvents:UIControlEventTouchDown];
-    [uploadButton setTitle:@"Upload images" forState:UIControlStateNormal];
+    [tableButton setTitle:@"Browse and upload images" forState:UIControlStateNormal];
         
     UIButton *infoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     infoButton.frame = CGRectMake(buttonX, currentY, buttonWidth, buttonHeight);
@@ -95,7 +88,6 @@
     
     [self.view addSubview:photoButton];
     [self.view addSubview:tableButton];
-    [self.view addSubview:uploadButton];
     [self.view addSubview:infoButton];
 }
 
@@ -156,12 +148,6 @@
     [self.navigationController pushViewController:photoTableViewController animated:YES];
 }
 
-- (void) uploadButton {
-    if (photoSelectionViewController == nil) {
-        photoSelectionViewController = [[PhotoSelectionViewController alloc] initWithPhotoData:self.photos];
-    }
-    [self.navigationController pushViewController:photoSelectionViewController animated:YES];
-}
 - (void) infoButton {
     if (infoViewController == nil) {
         infoViewController = [[InfoViewController alloc] init];

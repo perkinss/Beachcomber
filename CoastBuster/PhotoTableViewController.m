@@ -15,6 +15,8 @@
 @implementation PhotoTableViewController
 
 @synthesize photos, photoViewController, detailViewController;
+@synthesize startEditButton, endEditButton;
+@synthesize deleteButton, uploadButton;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -23,6 +25,7 @@
         self.photos = photoData;
         self.photoViewController = nil;
         self.detailViewController = nil;
+        self.tableView.allowsMultipleSelectionDuringEditing = YES;
     }
     return self;
 }
@@ -42,8 +45,19 @@
 {
     [super viewDidLoad];
     
-    [[self navigationItem] setRightBarButtonItem: [self editButtonItem]];  
+    self.startEditButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(startEditing)];
+    
+    self.endEditButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(endEditing)];
+    [[self navigationItem] setRightBarButtonItem:self.startEditButton];
+    
+    //[[self navigationItem] setRightBarButtonItem: [self editButtonItem]];  
     [[self navigationItem] setTitle:@"Photos"];
+    
+    self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered target:self action:@selector(multipleDelete)];
+    
+    self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleBordered target:self action:@selector(multipleUpload)];
+    NSArray *items = [[NSArray alloc] initWithObjects:self.deleteButton, self.uploadButton, nil];
+    [self setToolbarItems: items animated:NO];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -203,14 +217,16 @@
 {
     // TODO: change this so it doesn't create a new UIViewController each time?
     // ...leading to possible memory leak... should check with the tools to see whether it gets released.
-    UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
-    if (self.photoViewController == nil) {
-        self.photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
+    if (!self.tableView.isEditing) {
+        UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
+        if (self.photoViewController == nil) {
+            self.photoViewController = [[PhotoViewController alloc] initWithImage:imageToShow];
+        }
+        else {
+            [self.photoViewController changePhoto:imageToShow];
+        }
+        [self.navigationController pushViewController:self.photoViewController animated:YES];
     }
-    else {
-        [self.photoViewController changePhoto:imageToShow];
-    }
-    [self.navigationController pushViewController:self.photoViewController animated:YES];
 }
 
 /*
@@ -237,6 +253,74 @@
 
 // =======================   EDITING
 
+- (void)startEditing {
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    [self setEditing:YES animated:YES];
+    [[self navigationItem] setRightBarButtonItem:self.endEditButton];
+}
+
+- (void)endEditing {
+    [self.navigationController setToolbarHidden:YES animated:YES];
+    [self setEditing:NO animated:YES];
+    [[self navigationItem] setRightBarButtonItem: self.startEditButton];
+}
+
+- (void) multipleDelete {
+    NSArray *selections = [self.tableView indexPathsForSelectedRows];
+    if ([selections count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No photos selected" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        for (int i = 0; i < [selections count]; i++) {
+            int row = [[selections objectAtIndex:i] row];
+            [self.photos removePhotoAtIndex:row];
+        }
+        [self.tableView deleteRowsAtIndexPaths:selections withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void) multipleUpload {
+    NSArray *selections = [self.tableView indexPathsForSelectedRows];
+    NSMutableArray *integerSelections = [[NSMutableArray alloc] init];
+    for (int i = 0; i < [selections count]; i++) {
+        [integerSelections addObject:[NSNumber numberWithInt:[[selections objectAtIndex:i] row] ] ];
+    }
+    
+    if ([integerSelections count] == 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"" message:@"No photos selected" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        [self.photos uploadPhotosInSet:integerSelections withObserver:self];
+        [self.uploadButton setEnabled:NO];
+        [self.deleteButton setEnabled:NO];
+        
+    }
+}
+
+- (void) _sendDidStopWithStatus: (NSString*) status{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    NSString* alertTitle = @"";
+    NSString* alertMessage = @"";
+    
+    if (status == nil) {
+        alertMessage = @"Upload completed";
+        NSArray *selections = [self.tableView indexPathsForSelectedRows];
+        for (int i = 0; i < [selections count]; i++) {
+            [self.tableView deselectRowAtIndexPath:[selections objectAtIndex:i] animated:YES];
+        }
+    }
+    else {
+        alertTitle = @"Error";
+        alertMessage = status;
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alert show];
+    [self.uploadButton setEnabled:YES];
+    [self.deleteButton setEnabled:YES];
+}
 
 // allow editing for all rows
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

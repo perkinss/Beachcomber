@@ -19,7 +19,6 @@
     CLLocation *currentLocation;
     
     PhotoTableViewController *photoTableViewController;
-    PhotoSelectionViewController *photoSelectionViewController;
     PhotoDetailViewController *photoDetailViewController;
     InfoViewController *infoViewController;
 }
@@ -29,7 +28,6 @@
 @property (nonatomic, retain) CLLocation *currentLocation;
 
 @property (nonatomic, retain) PhotoTableViewController *photoTableViewController;
-@property (nonatomic, retain) PhotoSelectionViewController *photoSelectionViewController;
 @property (nonatomic, retain) InfoViewController *infoViewController;
 @property (nonatomic, retain) PhotoDetailViewController *photoDetailViewController;
 
@@ -37,7 +35,6 @@
 
 - (void) cameraButton;
 - (void) dataButton;
-- (void) uploadButton;
 - (void) infoButton;
 
 @end

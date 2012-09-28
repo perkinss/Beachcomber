@@ -5,6 +5,7 @@
 //  Created by Jeff Proctor on 12-07-27.
 //  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
+//   DEPRECATED: replaced with iOS5 multiple selection list
 
 #import <UIKit/UIKit.h>
 @class PhotoData;

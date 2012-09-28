@@ -5,6 +5,7 @@
 //  Created by Jeff Proctor on 12-07-27.
 //  Copyright (c) 2012 University of British Columbia. All rights reserved.
 //
+//   DEPRECATED: replaced with iOS5 multiple selection list
 
 #import "PhotoSelectionViewController.h"
 #import "PhotoData.h"
@@ -40,7 +41,7 @@
     self.uploadButton = [[UIBarButtonItem alloc] initWithTitle:@"Upload" style:UIBarButtonItemStyleDone target:self action:@selector(uploadEvent)];
     [[self navigationItem] setRightBarButtonItem: self.uploadButton];  
     [[self navigationItem] setTitle:@"Select photos"];
-    [self.tableView reloadData];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -58,6 +59,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -210,7 +212,7 @@
     }
     else {
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [self.photos uploadPhotosInSet:self.selection withObserver:self];
+        [self.photos uploadPhotosInSet:[self.selection allObjects] withObserver:self];
         [self.uploadButton setEnabled:NO];
         
     }

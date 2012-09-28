@@ -16,6 +16,11 @@
     
     PhotoViewController       *photoViewController;
     PhotoDetailViewController *detailViewController;
+    
+    UIBarButtonItem *startEditButton;
+    UIBarButtonItem *endEditButton;
+    UIBarButtonItem *deleteButton;
+    UIBarButtonItem *uploadButton;
 }
 
 
@@ -24,8 +29,18 @@
 @property (nonatomic, retain) PhotoViewController       *photoViewController;
 @property (nonatomic, retain) PhotoDetailViewController *detailViewController;
 
+@property (nonatomic, retain) UIBarButtonItem *startEditButton;
+@property (nonatomic, retain) UIBarButtonItem *endEditButton;
+
+@property (nonatomic, retain) UIBarButtonItem *deleteButton;
+@property (nonatomic, retain) UIBarButtonItem *uploadButton;
+
 - (id)initWithPhotoData:(PhotoData*) photoData;
 //- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;
 
+- (void)startEditing;
+- (void)endEditing;
+- (void) multipleDelete;
+- (void) multipleUpload;
 
 @end

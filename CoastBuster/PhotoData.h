@@ -66,7 +66,7 @@ enum {
 - (UIImage*) thumbImageAtIndex: (NSInteger) index;
 - (BOOL) removePhotoAtIndex: (NSInteger) index;
 - (BOOL) movePhotoAtIndex:(NSInteger)fromIndex to:(NSInteger)toIndex;
-- (void) uploadPhotosInSet:(NSMutableSet*) photoSet withObserver:(id)target;
+- (void) uploadPhotosInSet:(NSArray*) photoSet withObserver:(id)target;
 - (UIImage *) makeThumb: (UIImage *)theImage imageData: (CFDataRef)theImageData;
 
 
