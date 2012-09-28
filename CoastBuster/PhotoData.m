@@ -144,8 +144,9 @@
         longitudeString = [NSString stringWithFormat:@"%f", location.coordinate.longitude];
     }
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    // TODO: timestamp will be in the user's time zone
+
     [format setDateFormat:@"yyyy-MM-dd HH:mm"];
+    [format setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     NSString* dateString = [format stringFromDate:[NSDate date]];
     [newPhoto setObject:latitudeString forKey:@"latitude"];
     [newPhoto setObject:longitudeString forKey:@"longitude"];
