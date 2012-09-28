@@ -10,7 +10,7 @@
 
 @implementation PhotoViewController
 
-@synthesize imageView, image, scrollView;
+@synthesize imageView, image;
 
 - (id)initWithImage:(UIImage*)initialImage
 {
@@ -35,13 +35,15 @@
 // Implement loadView to create a view hierarchy programmatically, without using a nib.
 - (void)loadView
 {
-    self.scrollView = [[UIScrollView alloc] init];
-    self.imageView = [[UIImageView alloc] initWithImage:image];
-    scrollView.contentSize = self.imageView.frame.size;
-    scrollView.scrollEnabled = YES;
+    self.imageView = [[UIImageView alloc] init];
+    self.imageView.backgroundColor = [UIColor blackColor];
+    self.view = self.imageView;
+}
 
-    [scrollView addSubview:self.imageView];
-    self.view = scrollView;
+- (void) layoutSubviews {
+    CGRect screenFrame = [[UIScreen mainScreen] applicationFrame];
+    [self.imageView setFrame: CGRectMake(0,0, screenFrame.size.height - 64,screenFrame.size.width)];
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 
@@ -69,9 +71,13 @@
 
 - (void) changePhoto:(UIImage*) newImage {
     self.image = newImage;
-    self.imageView.image = newImage;
-    [self.imageView setFrame:CGRectMake(0, 0, self.image.size.width, self.image.size.height)];
-    self.scrollView.contentSize = self.imageView.frame.size;
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    self.imageView.image = self.image;
+    self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+}
+
+
 
 @end
