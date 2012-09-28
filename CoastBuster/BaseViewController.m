@@ -59,6 +59,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationItem] setTitle:@"Coast Buster"];
         
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     int buttonWidth = 240;
