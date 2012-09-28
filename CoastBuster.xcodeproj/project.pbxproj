@@ -30,7 +30,7 @@
 		C833E1B215B7D94600EE636E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19815B7D94500EE636E /* UIKit.framework */; };
 		C833E1B315B7D94600EE636E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C833E19A15B7D94500EE636E /* Foundation.framework */; };
 		C833E1BB15B7D94600EE636E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C833E1B915B7D94600EE636E /* InfoPlist.strings */; };
-		C833E1BE15B7D94600EE636E /* BeachComberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1BD15B7D94600EE636E /* BeachComberTests.m */; };
+		C833E1BE15B7D94600EE636E /* CoastBusterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1BD15B7D94600EE636E /* CoastBusterTests.m */; };
 		C833E1CE15B7DF8200EE636E /* PhotoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */; };
 		C833E1D715B91DBC00EE636E /* image1.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D415B91DBC00EE636E /* image1.png */; };
 		C833E1D815B91DBC00EE636E /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D515B91DBC00EE636E /* image2.png */; };
@@ -47,7 +47,7 @@
 			containerPortal = C833E18B15B7D94500EE636E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C833E19315B7D94500EE636E;
-			remoteInfo = BeachComber;
+			remoteInfo = CoastBuster;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -70,22 +70,22 @@
 		C81BAD9015B9E36900132A2E /* PhotoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoDetailViewController.h; sourceTree = "<group>"; };
 		C81BAD9115B9E36900132A2E /* PhotoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoDetailViewController.m; sourceTree = "<group>"; };
 		C81BAD9315B9F9E200132A2E /* image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image4.png; sourceTree = "<group>"; };
-		C833E19415B7D94500EE636E /* Beachcomber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Beachcomber.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C833E19415B7D94500EE636E /* CoastBuster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoastBuster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C833E19815B7D94500EE636E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C833E19A15B7D94500EE636E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C833E19C15B7D94500EE636E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		C833E1A015B7D94500EE636E /* Beach_comber-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Beach_comber-Info.plist"; sourceTree = "<group>"; };
+		C833E1A015B7D94500EE636E /* CoastBuster-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoastBuster-Info.plist"; sourceTree = "<group>"; };
 		C833E1A215B7D94500EE636E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C833E1A415B7D94500EE636E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeachComber-Prefix.pch"; sourceTree = "<group>"; };
+		C833E1A615B7D94500EE636E /* CoastBuster-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoastBuster-Prefix.pch"; sourceTree = "<group>"; };
 		C833E1A715B7D94500EE636E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C833E1A815B7D94500EE636E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C833E1AF15B7D94600EE636E /* BeachComberTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeachComberTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C833E1AF15B7D94600EE636E /* CoastBusterTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoastBusterTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C833E1B015B7D94600EE636E /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		C833E1B815B7D94600EE636E /* BeachComberTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeachComberTests-Info.plist"; sourceTree = "<group>"; };
+		C833E1B815B7D94600EE636E /* CoastBusterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoastBusterTests-Info.plist"; sourceTree = "<group>"; };
 		C833E1BA15B7D94600EE636E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		C833E1BC15B7D94600EE636E /* BeachComberTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BeachComberTests.h; sourceTree = "<group>"; };
-		C833E1BD15B7D94600EE636E /* BeachComberTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeachComberTests.m; sourceTree = "<group>"; };
+		C833E1BC15B7D94600EE636E /* CoastBusterTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoastBusterTests.h; sourceTree = "<group>"; };
+		C833E1BD15B7D94600EE636E /* CoastBusterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoastBusterTests.m; sourceTree = "<group>"; };
 		C833E1CC15B7DF8200EE636E /* PhotoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoTableViewController.h; sourceTree = "<group>"; };
 		C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoTableViewController.m; sourceTree = "<group>"; };
 		C833E1D415B91DBC00EE636E /* image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image1.png; sourceTree = "<group>"; };
@@ -131,8 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				086BF92016137F5D006003E1 /* Default-568h@2x.png */,
-				C833E19E15B7D94500EE636E /* Beachcomber */,
-				C833E1B615B7D94600EE636E /* BeachComberTests */,
+				C833E19E15B7D94500EE636E /* CoastBuster */,
+				C833E1B615B7D94600EE636E /* CoastBusterTests */,
 				C833E19715B7D94500EE636E /* Frameworks */,
 				C833E19515B7D94500EE636E /* Products */,
 			);
@@ -141,8 +141,8 @@
 		C833E19515B7D94500EE636E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C833E19415B7D94500EE636E /* Beachcomber.app */,
-				C833E1AF15B7D94600EE636E /* BeachComberTests.octest */,
+				C833E19415B7D94500EE636E /* CoastBuster.app */,
+				C833E1AF15B7D94600EE636E /* CoastBusterTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,7 +163,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		C833E19E15B7D94500EE636E /* Beachcomber */ = {
+		C833E19E15B7D94500EE636E /* CoastBuster */ = {
 			isa = PBXGroup;
 			children = (
 				C833E19F15B7D94500EE636E /* Supporting Files */,
@@ -185,8 +185,8 @@
 				C81BAD8915B9CC0E00132A2E /* PhotoData.h */,
 				C81BAD8A15B9CC0E00132A2E /* PhotoData.m */,
 			);
-			name = Beachcomber;
-			path = BeachComber;
+			name = CoastBuster;
+			path = CoastBuster;
 			sourceTree = "<group>";
 		};
 		C833E19F15B7D94500EE636E /* Supporting Files */ = {
@@ -200,28 +200,29 @@
 				C833E1D515B91DBC00EE636E /* image2.png */,
 				C833E1D615B91DBC00EE636E /* image3.png */,
 				C81BAD9315B9F9E200132A2E /* image4.png */,
-				C833E1A015B7D94500EE636E /* Beach_comber-Info.plist */,
+				C833E1A015B7D94500EE636E /* CoastBuster-Info.plist */,
 				C833E1A115B7D94500EE636E /* InfoPlist.strings */,
 				C833E1A415B7D94500EE636E /* main.m */,
-				C833E1A615B7D94500EE636E /* BeachComber-Prefix.pch */,
+				C833E1A615B7D94500EE636E /* CoastBuster-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C833E1B615B7D94600EE636E /* BeachComberTests */ = {
+		C833E1B615B7D94600EE636E /* CoastBusterTests */ = {
 			isa = PBXGroup;
 			children = (
-				C833E1BC15B7D94600EE636E /* BeachComberTests.h */,
-				C833E1BD15B7D94600EE636E /* BeachComberTests.m */,
+				C833E1BC15B7D94600EE636E /* CoastBusterTests.h */,
+				C833E1BD15B7D94600EE636E /* CoastBusterTests.m */,
 				C833E1B715B7D94600EE636E /* Supporting Files */,
 			);
-			path = BeachComberTests;
+			name = CoastBusterTests;
+			path = CoastBusterTests;
 			sourceTree = "<group>";
 		};
 		C833E1B715B7D94600EE636E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C833E1B815B7D94600EE636E /* BeachComberTests-Info.plist */,
+				C833E1B815B7D94600EE636E /* CoastBusterTests-Info.plist */,
 				C833E1B915B7D94600EE636E /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -242,14 +243,14 @@
 			);
 			dependencies = (
 			);
-			name = Beachcomber;
-			productName = BeachComber;
-			productReference = C833E19415B7D94500EE636E /* Beachcomber.app */;
+			name = CoastBuster;
+			productName = CoastBuster;
+			productReference = C833E19415B7D94500EE636E /* CoastBuster.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C833E1AE15B7D94600EE636E /* BeachComberTests */ = {
+		C833E1AE15B7D94600EE636E /* CoastBusterTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComberTests" */;
+			buildConfigurationList = C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "CoastBusterTests" */;
 			buildPhases = (
 				C833E1AA15B7D94600EE636E /* Sources */,
 				C833E1AB15B7D94600EE636E /* Frameworks */,
@@ -261,9 +262,9 @@
 			dependencies = (
 				C833E1B515B7D94600EE636E /* PBXTargetDependency */,
 			);
-			name = BeachComberTests;
-			productName = BeachComberTests;
-			productReference = C833E1AF15B7D94600EE636E /* BeachComberTests.octest */;
+			name = CoastBusterTests;
+			productName = CoastBusterTests;
+			productReference = C833E1AF15B7D94600EE636E /* CoastBusterTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -275,7 +276,7 @@
 				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "University of British Columbia";
 			};
-			buildConfigurationList = C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "Beachcomber" */;
+			buildConfigurationList = C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "CoastBuster" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -288,7 +289,7 @@
 			projectRoot = "";
 			targets = (
 				C833E19315B7D94500EE636E /* Beachcomber */,
-				C833E1AE15B7D94600EE636E /* BeachComberTests */,
+				C833E1AE15B7D94600EE636E /* CoastBusterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -359,7 +360,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C833E1BE15B7D94600EE636E /* BeachComberTests.m in Sources */,
+				C833E1BE15B7D94600EE636E /* CoastBusterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,7 +415,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = Beachcomber;
+				PRODUCT_NAME = CoastBuster;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -435,7 +436,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = Beachcomber;
+				PRODUCT_NAME = CoastBuster;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -446,10 +447,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BeachComber/Beach_comber-Info.plist";
+				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/CoastBuster/CoastBuster-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = Beachcomber;
+				PRODUCT_NAME = CoastBuster;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -459,10 +460,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/BeachComber/Beach_comber-Info.plist";
+				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/CoastBuster/CoastBuster-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PRODUCT_NAME = Beachcomber;
+				PRODUCT_NAME = CoastBuster;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,15 +472,15 @@
 		C833E1C515B7D94600EE636E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeachComber.app/BeachComber";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoastBuster.app/CoastBuster";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "BeachComberTests/BeachComberTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
+				INFOPLIST_FILE = "CoastBusterTests/CoastBusterTests-Info.plist";
+				PRODUCT_NAME = CoastBusterTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -488,15 +489,15 @@
 		C833E1C615B7D94600EE636E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeachComber.app/BeachComber";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/CoastBuster.app/CoastBuster";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeachComber/BeachComber-Prefix.pch";
-				INFOPLIST_FILE = "BeachComberTests/BeachComberTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
+				INFOPLIST_FILE = "CoastBusterTests/CoastBusterTests-Info.plist";
+				PRODUCT_NAME = CoastBusterTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -505,7 +506,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "Beachcomber" */ = {
+		C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "CoastBuster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C833E1BF15B7D94600EE636E /* Debug */,
@@ -523,7 +524,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "BeachComberTests" */ = {
+		C833E1C415B7D94600EE636E /* Build configuration list for PBXNativeTarget "CoastBusterTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C833E1C515B7D94600EE636E /* Debug */,
