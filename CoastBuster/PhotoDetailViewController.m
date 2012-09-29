@@ -206,7 +206,10 @@
 }
 
 - (void) categoryPickerButtonDone {
+    UIScrollView *scrollView = (UIScrollView*) self.view;
+    scrollView.scrollEnabled = NO;
     self.categoryField.text = [categories objectAtIndex:[self.categoryPicker selectedRowInComponent:0]];
+    scrollView.scrollEnabled = YES;
     [self.categoryField resignFirstResponder];
 }
 - (void) categoryPickerButtonCancel {
@@ -216,7 +219,10 @@
 
 
 - (void) compositionPickerButtonDone {
+    UIScrollView *scrollView = (UIScrollView*) self.view;
+    scrollView.scrollEnabled = NO;
     self.compositionField.text = [compositions objectAtIndex:[self.compositionPicker selectedRowInComponent:0]];
+    scrollView.scrollEnabled = YES;
     [self.compositionField resignFirstResponder];
 }
 - (void) compositionPickerButtonCancel {

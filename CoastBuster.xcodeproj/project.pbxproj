@@ -185,7 +185,6 @@
 				C81BAD8915B9CC0E00132A2E /* PhotoData.h */,
 				C81BAD8A15B9CC0E00132A2E /* PhotoData.m */,
 			);
-			name = CoastBuster;
 			path = CoastBuster;
 			sourceTree = "<group>";
 		};
@@ -215,7 +214,6 @@
 				C833E1BD15B7D94600EE636E /* CoastBusterTests.m */,
 				C833E1B715B7D94600EE636E /* Supporting Files */,
 			);
-			name = CoastBusterTests;
 			path = CoastBusterTests;
 			sourceTree = "<group>";
 		};
@@ -231,9 +229,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C833E19315B7D94500EE636E /* Beachcomber */ = {
+		C833E19315B7D94500EE636E /* CoastBuster */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "Beachcomber" */;
+			buildConfigurationList = C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "CoastBuster" */;
 			buildPhases = (
 				C833E19015B7D94500EE636E /* Sources */,
 				C833E19115B7D94500EE636E /* Frameworks */,
@@ -273,7 +271,7 @@
 		C833E18B15B7D94500EE636E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "University of British Columbia";
 			};
 			buildConfigurationList = C833E18E15B7D94500EE636E /* Build configuration list for PBXProject "CoastBuster" */;
@@ -288,7 +286,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C833E19315B7D94500EE636E /* Beachcomber */,
+				C833E19315B7D94500EE636E /* CoastBuster */,
 				C833E1AE15B7D94600EE636E /* CoastBusterTests */,
 			);
 		};
@@ -369,7 +367,7 @@
 /* Begin PBXTargetDependency section */
 		C833E1B515B7D94600EE636E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C833E19315B7D94500EE636E /* Beachcomber */;
+			target = C833E19315B7D94500EE636E /* CoastBuster */;
 			targetProxy = C833E1B415B7D94600EE636E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -446,12 +444,15 @@
 		C833E1C215B7D94600EE636E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/CoastBuster/CoastBuster-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = CoastBuster;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -459,12 +460,15 @@
 		C833E1C315B7D94600EE636E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CoastBuster/CoastBuster-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/CoastBuster/CoastBuster-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = CoastBuster;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 armv7s armv6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -515,7 +519,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "Beachcomber" */ = {
+		C833E1C115B7D94600EE636E /* Build configuration list for PBXNativeTarget "CoastBuster" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C833E1C215B7D94600EE636E /* Debug */,
