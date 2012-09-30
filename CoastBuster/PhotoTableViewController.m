@@ -17,6 +17,7 @@
 @synthesize photos, photoViewController, detailViewController;
 @synthesize startEditButton, endEditButton;
 @synthesize deleteButton, uploadButton;
+@synthesize uploadTaskID;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -26,6 +27,7 @@
         self.photoViewController = nil;
         self.detailViewController = nil;
         self.tableView.allowsMultipleSelectionDuringEditing = YES;
+        self.uploadTaskID = UIBackgroundTaskInvalid;
     }
     return self;
 }
@@ -292,20 +294,23 @@
         [alert show];
     }
     else {
+        self.uploadTaskID = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+            [[UIApplication sharedApplication] endBackgroundTask:self.uploadTaskID];
+            self.uploadTaskID = UIBackgroundTaskInvalid;
+        }];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        [self.photos uploadPhotosInSet:integerSelections withObserver:self];
         [self.uploadButton setEnabled:NO];
         [self.deleteButton setEnabled:NO];
-        
+        [self.photos uploadPhotosInSet:integerSelections withObserver:self];
     }
 }
 
 - (void) _sendDidStopWithStatus: (NSString*) status{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSString* alertTitle = @"";
     NSString* alertMessage = @"";
     
     if (status == nil) {
+        //localNotif.alertBody   = @"Upload completed";
         alertMessage = @"Upload completed";
         NSArray *selections = [self.tableView indexPathsForSelectedRows];
         for (int i = 0; i < [selections count]; i++) {
@@ -313,13 +318,27 @@
         }
     }
     else {
-        alertTitle = @"Error";
-        alertMessage = status;
+        //alertTitle = @"Error";
+        //localNotif.alertBody   = @"Upload failed";
+        alertMessage = @"Upload failed";
     }
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:alertTitle message:alertMessage delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-    [alert show];
+
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateBackground) {
+        UILocalNotification *localNotif = [[UILocalNotification alloc] init];
+        localNotif.fireDate             = nil;
+        localNotif.hasAction            = NO;
+        localNotif.alertBody            = alertMessage;
+        localNotif.soundName            = UILocalNotificationDefaultSoundName;
+        [[UIApplication sharedApplication] presentLocalNotificationNow:localNotif];
+    }
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CoastBuster" message:alertMessage delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        [alert show];
+    }
     [self.uploadButton setEnabled:YES];
     [self.deleteButton setEnabled:YES];
+    [[UIApplication sharedApplication] endBackgroundTask:self.uploadTaskID];
+    self.uploadTaskID = UIBackgroundTaskInvalid;
 }
 
 // allow editing for all rows

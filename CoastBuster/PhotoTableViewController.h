@@ -21,6 +21,8 @@
     UIBarButtonItem *endEditButton;
     UIBarButtonItem *deleteButton;
     UIBarButtonItem *uploadButton;
+    
+    UIBackgroundTaskIdentifier uploadTaskID;
 }
 
 
@@ -34,6 +36,8 @@
 
 @property (nonatomic, retain) UIBarButtonItem *deleteButton;
 @property (nonatomic, retain) UIBarButtonItem *uploadButton;
+
+@property (nonatomic) UIBackgroundTaskIdentifier uploadTaskID;
 
 - (id)initWithPhotoData:(PhotoData*) photoData;
 //- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;
