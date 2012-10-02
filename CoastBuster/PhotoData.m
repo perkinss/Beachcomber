@@ -91,10 +91,21 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Could not delete thumb" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         [alert show];
     }
-
     
     [self.photos removeObjectAtIndex:index];
     return YES;
+}
+
+- (BOOL) removePhoto: (NSDictionary*) entry {
+    for (int i = [self.photos count] - 1; i >= 0; i++) {
+        NSDictionary* cursor = [self.photos objectAtIndex:i];
+        NSString* cursorFile = [cursor objectForKey:@"imageFile"];
+        NSString* entryFile = [entry objectForKey:@"imageFile"];
+        if ([cursorFile isEqualToString:entryFile]) {
+            return [self removePhotoAtIndex:i];
+        }
+    }
+    return NO;
 }
 
 - (BOOL) movePhotoAtIndex:(NSInteger)fromIndex to:(NSInteger)toIndex {

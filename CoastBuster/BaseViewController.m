@@ -139,7 +139,6 @@
             [alert show];
         }
     }
-    //return YES;
 }
 
 - (void) dataButton {
@@ -180,7 +179,8 @@
     UIImage* thumb = [[UIImage alloc] initWithContentsOfFile:thumbName];
     if (self.photoDetailViewController == nil) {
         self.photoDetailViewController = [[PhotoDetailViewController alloc] initWithImage:thumb entry:newEntry];
-        self.photoDetailViewController.navigationItem.hidesBackButton = YES;
+        self.photoDetailViewController.photos = self.photos;
+        [self.photoDetailViewController setBackAsCancel];
         self.photoDetailViewController.mandatoryFields = YES;
     }
     else {

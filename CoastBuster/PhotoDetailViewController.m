@@ -11,7 +11,7 @@
 
 @implementation PhotoDetailViewController
 
-@synthesize thumb, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField, mandatoryFields;
+@synthesize thumb, imageView, commentField, categoryField, categoryPicker, compositionField, compositionPicker, categories, compositions, entry, keyboardIsShown, activeField, mandatoryFields, photos;
 
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par
 {
@@ -26,6 +26,7 @@
         self.entry = entry_par;
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(saveEvent)];
         self.mandatoryFields = NO;
+        self.photos = nil;
     }
     return self;
 }
@@ -245,6 +246,20 @@
         [self.entry setObject:self.commentField.text forKey:@"comment"];
         [self.entry setObject:self.categoryField.text forKey:@"category"];
         [self.entry setObject:self.compositionField.text forKey:@"composition"];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
+
+- (void) setBackAsCancel {
+    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:self action:@selector(cancelButtonAction)];
+    self.navigationItem.leftBarButtonItem = cancelButton;
+}
+
+- (void) cancelButtonAction {
+    if (self.photos != nil) {
+        [self.photos removePhoto: self.entry];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

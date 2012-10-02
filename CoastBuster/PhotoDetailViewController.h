@@ -27,6 +27,7 @@
     BOOL keyboardIsShown;
     BOOL mandatoryFields;
     
+    PhotoData *photos;
 }
 
 @property (nonatomic, retain) UIImage *thumb;
@@ -47,6 +48,8 @@
 @property (nonatomic) BOOL keyboardIsShown;
 @property (nonatomic) BOOL mandatoryFields;
 
+@property (nonatomic, retain) PhotoData *photos;
+
 - (id)initWithImage:(UIImage*) image entry:(NSMutableDictionary*)entry_par;
 - (void) changePhotoWithImage:(UIImage*) image entry:(NSMutableDictionary*) entry;
 
@@ -56,4 +59,5 @@
 - (void) compositionPickerButtonDone;
 - (void) compositionPickerButtonCancel;
 - (void) saveEvent;
+- (void) setBackAsCancel;
 @end
