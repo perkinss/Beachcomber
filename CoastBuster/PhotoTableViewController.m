@@ -51,8 +51,7 @@
     
     self.endEditButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleDone target:self action:@selector(endEditing)];
     [[self navigationItem] setRightBarButtonItem:self.startEditButton];
-    
-    //[[self navigationItem] setRightBarButtonItem: [self editButtonItem]];  
+     
     [[self navigationItem] setTitle:@"Photos"];
     
     self.deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered target:self action:@selector(multipleDelete)];
@@ -143,71 +142,6 @@
     return cell;
 }
 
-/*
- * Retrieves named image, and crops from center point of image to preserve 3:4 aspect ratio.
- */
-//- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage {
-//    int imgWidth = uncroppedImage.size.width;
-//    int imgHeight = uncroppedImage.size.height;
-//    int cropHeight, cropWidth, cropX, cropY;
-//    if (3 * imgWidth > 4 * imgHeight) {
-//        cropHeight = imgHeight;
-//        cropWidth = 4 * imgHeight / 3;
-//        cropY = 0;
-//        cropX = (imgWidth - cropWidth) / 2;
-//    }
-//    else {
-//        cropWidth = imgWidth;
-//        cropHeight = 3 * imgWidth / 4;
-//        cropX = 0;
-//        cropY = (imgHeight - cropHeight) / 2;
-//    }
-//    CGRect cropRect = CGRectMake(cropX, cropY, cropWidth, cropHeight);
-//    CGImageRef imageRef = CGImageCreateWithImageInRect([uncroppedImage CGImage], cropRect);
-//    UIImage* result = [UIImage imageWithCGImage:imageRef];
-//    CGImageRelease(imageRef);
-//    return result;
-//}
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Table view delegate
 
 
@@ -217,8 +151,6 @@
  */
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO: change this so it doesn't create a new UIViewController each time?
-    // ...leading to possible memory leak... should check with the tools to see whether it gets released.
     if (!self.tableView.isEditing) {
         UIImage* imageToShow = [self.photos photoImageAtIndex:indexPath.row];
         if (self.photoViewController == nil) {
@@ -310,7 +242,6 @@
     NSString* alertMessage = @"";
     
     if (status == nil) {
-        //localNotif.alertBody   = @"Upload completed";
         alertMessage = @"Upload completed";
         NSArray *selections = [self.tableView indexPathsForSelectedRows];
         for (int i = 0; i < [selections count]; i++) {
@@ -318,8 +249,6 @@
         }
     }
     else {
-        //alertTitle = @"Error";
-        //localNotif.alertBody   = @"Upload failed";
         alertMessage = @"Upload failed";
     }
 
@@ -356,15 +285,7 @@
     [self.photos movePhotoAtIndex:fromIndexPath.row to:toIndexPath.row];
 }
 
-// event handler for deleting or inserting row
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // row change is a deletion
-        [self.photos removePhotoAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
+
 
 
 

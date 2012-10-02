@@ -36,7 +36,6 @@
 		C833E1D815B91DBC00EE636E /* image2.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D515B91DBC00EE636E /* image2.png */; };
 		C833E1D915B91DBC00EE636E /* image3.png in Resources */ = {isa = PBXBuildFile; fileRef = C833E1D615B91DBC00EE636E /* image3.png */; };
 		C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A5592015BCA12C0070FBA7 /* BaseViewController.m */; };
-		C8CEE53915C3796800EEC4ED /* PhotoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8CEE53815C3796800EEC4ED /* PhotoSelectionViewController.m */; };
 		C8D9AAE115C0B50F004CDB14 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */; };
 		C8FBB63715C7449C006BFB3C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FBB63615C7449C006BFB3C /* CFNetwork.framework */; };
 /* End PBXBuildFile section */
@@ -93,8 +92,6 @@
 		C833E1D615B91DBC00EE636E /* image3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image3.png; sourceTree = "<group>"; };
 		C8A5591F15BCA12C0070FBA7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		C8A5592015BCA12C0070FBA7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
-		C8CEE53715C3796800EEC4ED /* PhotoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoSelectionViewController.h; sourceTree = "<group>"; };
-		C8CEE53815C3796800EEC4ED /* PhotoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoSelectionViewController.m; sourceTree = "<group>"; };
 		C8D9AAE015C0B50F004CDB14 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		C8FBB63615C7449C006BFB3C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -176,8 +173,6 @@
 				08442DC215C6E256006E7234 /* InfoViewController.xib */,
 				C833E1CC15B7DF8200EE636E /* PhotoTableViewController.h */,
 				C833E1CD15B7DF8200EE636E /* PhotoTableViewController.m */,
-				C8CEE53715C3796800EEC4ED /* PhotoSelectionViewController.h */,
-				C8CEE53815C3796800EEC4ED /* PhotoSelectionViewController.m */,
 				C81BAD8D15B9E35300132A2E /* PhotoViewController.h */,
 				C81BAD8E15B9E35300132A2E /* PhotoViewController.m */,
 				C81BAD9015B9E36900132A2E /* PhotoDetailViewController.h */,
@@ -349,7 +344,6 @@
 				C81BAD8F15B9E35300132A2E /* PhotoViewController.m in Sources */,
 				C81BAD9215B9E36900132A2E /* PhotoDetailViewController.m in Sources */,
 				C8A5592115BCA12C0070FBA7 /* BaseViewController.m in Sources */,
-				C8CEE53915C3796800EEC4ED /* PhotoSelectionViewController.m in Sources */,
 				08442DC315C6E256006E7234 /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

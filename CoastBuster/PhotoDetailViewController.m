@@ -329,35 +329,6 @@
     }
 }
 
-//- (CGSize)getProportion:(CGSize)sizeOfScreen imageToSize:(UIImage *)theImage maximumHeight:(CGFloat)maxHeight {
-//        
-//    CGFloat ht = theImage.size.height;
-//    CGFloat wd = theImage.size.width;
-//    CGFloat maxWidth = sizeOfScreen.width - 120;
-//    CGFloat newHeight = 0;
-//    CGFloat newWidth = 0;
-//    
-//    if (ht > wd) {
-//        
-//        if (ht > maxHeight) {
-//            newHeight = maxHeight;
-//        } else {
-//            newHeight = ht;
-//        }
-//        newWidth = newWidth * wd / ht;        
-//        
-//    } else {
-//        if (wd > maxWidth) {
-//            newWidth = maxWidth;
-//        } else {
-//            newWidth = wd;
-//        }
-//        
-//        newHeight = newWidth * ht / wd;
-//    }
-//    
-//    return CGSizeMake(newWidth, newHeight);
-//}
 
 
 @end

@@ -132,7 +132,7 @@
     NSString *baseName = [self newFilename];
     NSString *thumbName = [baseName stringByAppendingPathExtension: @"thumb"];
     NSString *fullFilename = [[docDir stringByAppendingPathComponent:baseName] stringByAppendingPathExtension: @"jpg"];
-    NSString *thumbFilename = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"thumb.jpg"];
+    NSString *thumbFilename = [[docDir stringByAppendingPathComponent:thumbName] stringByAppendingPathExtension: @"jpg"];
 	NSData *data = [NSData dataWithData:UIImageJPEGRepresentation(image, 0)];
     //it may need to be written atomically if there's a chance an attempt could be made to upload a file while it's still being written
     [data writeToFile:fullFilename atomically:NO];    
