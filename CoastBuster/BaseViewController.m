@@ -27,7 +27,6 @@
         
         self.locationManager = [[CLLocationManager alloc] init];
         self.locationManager.delegate = self;
-        [self.locationManager startMonitoringSignificantLocationChanges];
         
         photoTableViewController = nil;
         photoDetailViewController = nil;
@@ -84,7 +83,8 @@
     currentY += buttonHeight + margin;
     [infoButton addTarget:self action:@selector(infoButton) forControlEvents:UIControlEventTouchDown];
     [infoButton setTitle:@"Help / About" forState:UIControlStateNormal];
-
+    
+    [self.locationManager startMonitoringSignificantLocationChanges];
     
     [self.view addSubview:photoButton];
     [self.view addSubview:tableButton];
@@ -111,6 +111,10 @@
            fromLocation:(CLLocation *)oldLocation
 {
     self.currentLocation = newLocation;
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location manager failed with error: %@", error.description);
 }
 
 - (void) cameraButton {

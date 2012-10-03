@@ -10,7 +10,7 @@
 @class PhotoDetailViewController;
 #import <UIKit/UIKit.h>
 
-@interface PhotoTableViewController : UITableViewController {
+@interface PhotoTableViewController : UITableViewController <UIAlertViewDelegate> {
     
     PhotoData *photos;
     
@@ -23,6 +23,8 @@
     UIBarButtonItem *uploadButton;
     
     UIBackgroundTaskIdentifier uploadTaskID;
+    
+    BOOL deleteAfterUpload;
 }
 
 
@@ -38,6 +40,8 @@
 @property (nonatomic, retain) UIBarButtonItem *uploadButton;
 
 @property (nonatomic) UIBackgroundTaskIdentifier uploadTaskID;
+
+@property (nonatomic) BOOL deleteAfterUpload;
 
 - (id)initWithPhotoData:(PhotoData*) photoData;
 //- (UIImage *)getCroppedImageFromImage:(UIImage *)uncroppedImage;

@@ -18,6 +18,7 @@
 @synthesize startEditButton, endEditButton;
 @synthesize deleteButton, uploadButton;
 @synthesize uploadTaskID;
+@synthesize deleteAfterUpload;
 
 - (id)initWithPhotoData:(PhotoData*) photoData
 {
@@ -28,6 +29,7 @@
         self.detailViewController = nil;
         self.tableView.allowsMultipleSelectionDuringEditing = YES;
         self.uploadTaskID = UIBackgroundTaskInvalid;
+        self.deleteAfterUpload = NO;
     }
     return self;
 }
@@ -215,6 +217,25 @@
 }
 
 - (void) multipleUpload {
+    UIAlertView *deletePrompt = [[UIAlertView alloc] init];
+    [deletePrompt setTitle:@"Confirm"];
+	[deletePrompt setMessage:@"Delete uploaded photos from phone?"];
+	[deletePrompt setDelegate:self];
+	[deletePrompt addButtonWithTitle:@"Yes"];
+	[deletePrompt addButtonWithTitle:@"No"];
+	[deletePrompt show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        self.deleteAfterUpload = YES;
+    }
+    else {
+        self.deleteAfterUpload = NO;
+    }
+    
     NSArray *selections = [self.tableView indexPathsForSelectedRows];
     NSMutableArray *integerSelections = [[NSMutableArray alloc] init];
     for (int i = 0; i < [selections count]; i++) {
@@ -243,9 +264,14 @@
     
     if (status == nil) {
         alertMessage = @"Upload completed";
-        NSArray *selections = [self.tableView indexPathsForSelectedRows];
-        for (int i = 0; i < [selections count]; i++) {
-            [self.tableView deselectRowAtIndexPath:[selections objectAtIndex:i] animated:YES];
+        if (deleteAfterUpload) {
+            [self multipleDelete];
+        }
+        else {
+            NSArray *selections = [self.tableView indexPathsForSelectedRows];
+            for (int i = 0; i < [selections count]; i++) {
+                [self.tableView deselectRowAtIndexPath:[selections objectAtIndex:i] animated:YES];
+            }
         }
     }
     else {
