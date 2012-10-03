@@ -9,7 +9,6 @@
 #import "BaseViewController.h"
 #import "PhotoTableViewController.h"
 #import "PhotoDetailViewController.h"
-#import "PhotoSelectionViewController.h"
 #import "InfoViewController.h"
 #import "PhotoData.h"
 #import <MobileCoreServices/UTCoreTypes.h>
